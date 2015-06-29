@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="24" failures="0" name="com.cxe.commons.StringsTest" time="0.012" errors="0" skipped="0">
+<testsuite tests="24" failures="0" name="com.cxe.commons.StringsTest" time="0.007" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib"/>
@@ -75,14 +75,14 @@
   <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_8args" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testValidateEmail" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_2args" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_3args" time="0.001"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_4args" time="0.002"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_3args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_4args" time="0.001"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_5args" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_6args" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_6args" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_7args" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_8args" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_2args_FAIL" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_2args_FAIL" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testIsEmpty" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testToSlug" time="0.002"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testToSlug" time="0.001"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testIsEmpty_Fail" time="0"/>
 </testsuite>

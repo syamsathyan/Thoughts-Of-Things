@@ -1,6 +1,7 @@
 com/cxe/commons/FastAbstractStringBuilder.class
 com/cxe/commons/VMath.class
 com/cxe/commons/FastStringBuilder.class
+com/cxe/commons/io/StreamHelper.class
 com/cxe/commons/command/SystemCommandExecutor.class
 com/cxe/commons/DateUtils.class
 com/cxe/commons/FixedFastStringBuilder.class
