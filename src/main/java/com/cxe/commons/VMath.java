@@ -8,28 +8,6 @@ import java.math.BigDecimal;
  */
 public class VMath {
 
-    /**
-     * Encode a byte array.
-     *
-     * @param base
-     * @return
-     */
-    private static final char[] TOHEX = "0123456789abcdef".toCharArray();
-    public static String byteToHex(byte[] base)
-    {
-        char[] c = new char[base.length * 2];
-        int i = 0;
-
-        for (byte b : base)
-        {
-            int j = b;
-            j = j + 128;
-            c[i++] = TOHEX[j / 0x10];
-            c[i++] = TOHEX[j % 0x10];
-        }
-        return new String(c);
-    }
-    
     public static final String ordinal(int i)
     {
         String[] sufixes = new String[]
