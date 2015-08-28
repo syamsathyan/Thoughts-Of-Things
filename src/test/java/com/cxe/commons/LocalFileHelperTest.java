@@ -60,9 +60,6 @@ public class LocalFileHelperTest
   {
   }
 
-  /**
-   * Test of testSaveFile method, of class Strings.
-   */
   @Test
   public void testSaveFile_YearMonth_Base62()
   {
@@ -86,9 +83,6 @@ public class LocalFileHelperTest
     assertTrue( size > 0 );
   }
 
-  /**
-   * Test of testSaveFile2 method, of class Strings.
-   */
   @Test
   public void testSaveFile2_YearMonthDay_Base62()
   {
