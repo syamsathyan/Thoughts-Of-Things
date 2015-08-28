@@ -44,12 +44,26 @@ public class DateUtils {
             .withZone(DateTimeZone.UTC); // For GMT
 
     /**
-     * Produces "01 01 2000"
+     * Produces "01/01/2000"
      */
     private static final DateTimeFormatter dateOnly = DateTimeFormat
             .forPattern("dd/MM/yyyy")
             .withLocale(Locale.US) // For common language
             .withZone(DateTimeZone.UTC); // For GMT
+
+    /**
+     * Produces "2000/01"
+     */
+    private static final DateTimeFormatter folderMaker_yearMonth = DateTimeFormat
+            .forPattern("yyyy/MM")
+            .withLocale(Locale.US); // For common language
+
+    /**
+     * Produces "2000/01/01"
+     */
+    private static final DateTimeFormatter folderMaker_yearMonthDay = DateTimeFormat
+            .forPattern("yyyy/MM/dd")
+            .withLocale(Locale.US); // For common language
 
     /**
      * Produces Sunday, January 01
@@ -260,6 +274,18 @@ public class DateUtils {
      */
     public static DateTime parseISO8601(String text) {
         return utcIso8601.parseDateTime(text);
+    }
+
+    /**
+     *
+     * @return The instant formatted as yyyy/MM from current Time (GOOD for creating folders for file uploads)
+     */
+    public static String getFilePathStyle_YearMonthNow(){
+        return folderMaker_yearMonth.print(DateTime.now());
+    }
+
+    public static String getFilePathStyle_YearMonthDayNow(){
+        return folderMaker_yearMonthDay.print(DateTime.now());
     }
 
 }
