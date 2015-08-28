@@ -15,7 +15,7 @@
  */
 package com.cxe.commons;
 
-import com.cxe.commons.io.UploadHelper;
+import com.cxe.commons.io.LocalFileHelper;
 import org.junit.*;
 
 import java.io.ByteArrayInputStream;
@@ -33,10 +33,10 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author sathyasy
  */
-public class UploadHelperTest
+public class LocalFileHelperTest
 {
 
-  public UploadHelperTest()
+  public LocalFileHelperTest()
   {
   }
 
@@ -69,14 +69,14 @@ public class UploadHelperTest
     System.out.println( "------ SaveFile_Base62 ----" );
     String basePath = Paths.get( "." ).toAbsolutePath().normalize().toString();
     System.out.println( "Base Path: " + basePath );
-    Path path = UploadHelper.createYearMonth_Base62Path( basePath, 6, "/", ".txt" );
+    Path path = LocalFileHelper.createYearMonth_Base62Path( basePath, 6, "/", ".txt" );
 
     String exampleString = "Test Syam";
     InputStream stream = new ByteArrayInputStream( exampleString.getBytes( StandardCharsets.UTF_8 ) );
 
     long size = 0;
     try {
-      size = UploadHelper.saveFile( stream, path );
+      size = LocalFileHelper.saveFile( stream, path );
       System.out.println( "File Created Size: " + size );
     } catch ( AccessDeniedException exception ) {
       System.out.println( "File Creation Denied by OS" );
@@ -95,14 +95,14 @@ public class UploadHelperTest
     System.out.println( "------ SaveFile2_Base62 ----" );
     String basePath = Paths.get( "." ).toAbsolutePath().normalize().toString();
     System.out.println( "Base Path: " + basePath );
-    Path path = UploadHelper.createYearMonthDay_Base62Path( basePath, 6, "/", ".txt" );
+    Path path = LocalFileHelper.createYearMonthDay_Base62Path( basePath, 6, "/", ".txt" );
 
     String exampleString = "Test Syam";
     InputStream stream = new ByteArrayInputStream( exampleString.getBytes( StandardCharsets.UTF_8 ) );
 
     String absolutePath = null;
     try {
-      absolutePath = UploadHelper.saveFile2( stream, path );
+      absolutePath = LocalFileHelper.saveFile2( stream, path );
       System.out.println( "File Created in: " + absolutePath );
     } catch ( AccessDeniedException exception ) {
       System.out.println( "File Creation Denied by OS" );

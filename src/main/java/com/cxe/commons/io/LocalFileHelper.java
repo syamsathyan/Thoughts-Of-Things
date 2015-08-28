@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 /**
  * Created by sathyasy on 8/28/15.
  */
-public class UploadHelper
+public class LocalFileHelper
 {
 
   /**
