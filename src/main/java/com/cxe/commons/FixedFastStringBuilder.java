@@ -1,24 +1,43 @@
 package com.cxe.commons;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Syam Sathyan
+ *
+ * The Simplest StringBuilder based on a fixed char array
+ * The backing Array is of fixed length and cannot Grow like a typical StringBuilderImplementation - hence the name FixedFastStringBuilder
+ * Always Pre-initialize the size for the maximum needed character length.
  */
-public final class FixedFastStringBuilder {
+public final class FixedFastStringBuilder implements Serializable, CharSequence{
 
     int count;
     char value[];
 
+    /**
+     * Pre-initialize the size the maximum needed character length.
+     * @param capacity
+     */
     public FixedFastStringBuilder(int capacity)
     {
         value = new char[capacity];
     }
 
+    /**
+     * Reduce the Pre-initialized size.
+     * @param capacity
+     */
     public final void reduce(int reduceCount)
     {
         count = count - reduceCount;
     }
-    
+
+    /**
+     * Clear the data and re-initialized size.
+     * Good for re-use strategy
+     * @param capacity
+     */
     public final void reset(int newCapacity)
     {
         value = null;
@@ -56,6 +75,12 @@ public final class FixedFastStringBuilder {
         count += 1;
     }
 
+    /**
+     * The fastest append method with pre-calculated length
+     *
+     * @param str - string to be appended to this builder
+     * @param len - length of the incoming string
+     */
     public final void append(String str, int len)
     {
         str.getChars(0, len, value, count);
@@ -71,6 +96,16 @@ public final class FixedFastStringBuilder {
     public final int length()
     {
         return count;
+    }
+
+    @Override
+    public char charAt(int index) {
+        return value[index];
+    }
+
+    @Override
+    public CharSequence subSequence(int start, int end) {
+        return new String(value, start, end);
     }
 
     @Override
