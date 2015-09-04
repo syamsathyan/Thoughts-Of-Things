@@ -57,7 +57,6 @@ public class FastSetTest {
         assertTrue(set.size() == 1);
         assertTrue(set.remove(value));
         assertTrue(set.size() == 0);
-        System.out.println(set.toString());
     }
 
 
@@ -74,33 +73,78 @@ public class FastSetTest {
         assertTrue(set.size() == count);
         System.out.println(set.toString());
         long timeTaken = end - begin;
-        System.out.println("Time Taken:" + timeTaken);
+        System.out.println("AddALot Time Taken:" + timeTaken);
     }
 
     @Test
-    public void testAddALot_Compare_HashSet() {
-        System.out.println("AddALot_Compare_HashSet");
+    public void testAdd_Sequential_Compare_HashSet() {
+        System.out.println("###### Add_Sequential_Compare_HashSet ######");
         long begin = System.nanoTime();
         int count = 100000;
         FastFixedSet set = new FastFixedSet(count);
         for (int i = 0; i < count; i++) {
             set.add(String.valueOf(i));
         }
-        long end = System.nanoTime();
-        long timeTaken1 = end - begin;
-        System.out.println("Time Taken by FastFixedSet:" + timeTaken1);
+        long timeTaken1 = System.nanoTime() - begin;
+        double seconds1 = ((double)timeTaken1 / 1000000000);
+        System.out.println("Time Taken by FastFixedSet(s):" + seconds1);
 
         begin = System.nanoTime();
         HashSet set2 = new HashSet(count);
         for (int i = 0; i < count; i++) {
             set2.add(String.valueOf(i));
         }
-        end = System.nanoTime();
+        long timeTaken2 = System.nanoTime() - begin;
         assertTrue(set.size() == count);
-        long timeTaken2 = end - begin;
-        System.out.println("Time Taken by HashSet:" + timeTaken2);
+        double seconds2 = ((double)timeTaken2 / 1000000000);
+        System.out.println("Time Taken by HashSet(s):" + seconds2);
 
-        System.out.println("Time Taken FixedFastSet vs HashSet:" + (timeTaken2 - timeTaken1));
+        System.out.println("HashSet took :" + (seconds2 - seconds1) + " seconds more than FixedFastSet");
+    }
+
+    @Test
+    public void testAdd_Random_Compare_HashSet() {
+        System.out.println("###### Add_Random_Compare_HashSet #######");
+        int count = 100000;
+        FastFixedSet set = new FastFixedSet(count);
+        //Warm up with Add
+        for (int i = 0; i < count; i++) {
+            set.add(String.valueOf(i));
+        }
+        //Odd position removal to make random gaps for next insertion
+        for (int i = 0; i < count; i = i + 2) {
+            set.remove(String.valueOf(i));
+        }
+
+        //Start Test1
+        long begin = System.nanoTime();
+        for (int i = 0; i < count; i++) {
+            set.add(String.valueOf(i));
+        }
+        long timeTaken1 = System.nanoTime() - begin;
+        double seconds1 = ((double)timeTaken1 / 1000000000);
+        System.out.println("Time Taken by FastFixedSet(s):" + seconds1);
+        assertTrue(set.size() == count);
+
+        //Warm up with Add
+        HashSet set2 = new HashSet(count);
+        for (int i = 0; i < count; i++) {
+            set2.add(String.valueOf(i));
+        }
+        //Odd position removal to make random gaps for next insertion
+        for (int i = 0; i < count; i = i + 2) {
+            set2.remove(String.valueOf(i));
+        }
+        //Start Test2
+        begin = System.nanoTime();
+        for (int i = 0; i < count; i++) {
+            set2.add(String.valueOf(i));
+        }
+        long timeTaken2  = System.nanoTime() - begin;
+        double seconds2 = ((double)timeTaken2 / 1000000000);
+        System.out.println("Time Taken by HashSet(s):" + seconds2);
+        System.out.println("HashSet took :" + (seconds2 - seconds1) + " seconds more than FixedFastSet");
+        assertTrue(set2.size() == count);
     }
 
 }

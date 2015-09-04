@@ -15,12 +15,10 @@ public class FastFixedSet<V> implements Set<V> {
 
     int count;
     Object[] values;
-    Integer[] keys;
 
     public FastFixedSet(int size) {
         if (size > 0) {
             values = new Object[size];
-            keys = new Integer[size];
         } else {
             throw new NullPointerException("Size cannot be less than 1");
         }
@@ -80,16 +78,15 @@ public class FastFixedSet<V> implements Set<V> {
             return false;
         } else {
             //See if current counter pointing slot is empty
-            if (keys[count] == null) {
-                keys[count] = v.hashCode();
+            if (values[count] == null) {
                 values[count] = v;
                 count++;
                 return true;
             } else {
-                for (int i = 0; i < keys.length; i++) {
-                    if (keys[i] == null) {
+                //Full iteration
+                for (int i = 0; i < values.length; i++) {
+                    if (values[i] == null) {
                         values[i] = v;
-                        keys[i] = v.hashCode();
                         count++;
                         return true;
                     }
@@ -101,10 +98,9 @@ public class FastFixedSet<V> implements Set<V> {
 
     @Override
     public boolean remove(Object o) {
-        for (int i = 0; i < keys.length; i++) {
-            if (keys[i].equals(o.hashCode())) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i]!=null && values[i].equals(o)) {
                 values[i] = null;
-                keys[i] = null;
                 count--;
                 return true;
             }
@@ -134,9 +130,8 @@ public class FastFixedSet<V> implements Set<V> {
 
     @Override
     public void clear() {
-        for (int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < values.length; i++) {
             values[i] = null;
-            keys[i] = null;
         }
         count = 0;
     }
