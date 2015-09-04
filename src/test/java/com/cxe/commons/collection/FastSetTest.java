@@ -17,6 +17,8 @@ package com.cxe.commons.collection;
 
 import org.junit.*;
 
+import java.util.HashSet;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -62,12 +64,43 @@ public class FastSetTest {
     @Test
     public void testAddALot() {
         System.out.println("AddALot");
-        FastFixedSet set = new FastFixedSet(100);
-        for(int i=0;i<100;i++){
+        long begin = System.nanoTime();
+        int count = 100000;
+        FastFixedSet set = new FastFixedSet(count);
+        for (int i = 0; i < count; i++) {
             set.add(String.valueOf(i));
         }
-        assertTrue(set.size() == 100);
+        long end = System.nanoTime();
+        assertTrue(set.size() == count);
         System.out.println(set.toString());
+        long timeTaken = end - begin;
+        System.out.println("Time Taken:" + timeTaken);
+    }
+
+    @Test
+    public void testAddALot_Compare_HashSet() {
+        System.out.println("AddALot_Compare_HashSet");
+        long begin = System.nanoTime();
+        int count = 100000;
+        FastFixedSet set = new FastFixedSet(count);
+        for (int i = 0; i < count; i++) {
+            set.add(String.valueOf(i));
+        }
+        long end = System.nanoTime();
+        long timeTaken1 = end - begin;
+        System.out.println("Time Taken by FastFixedSet:" + timeTaken1);
+
+        begin = System.nanoTime();
+        HashSet set2 = new HashSet(count);
+        for (int i = 0; i < count; i++) {
+            set2.add(String.valueOf(i));
+        }
+        end = System.nanoTime();
+        assertTrue(set.size() == count);
+        long timeTaken2 = end - begin;
+        System.out.println("Time Taken by HashSet:" + timeTaken2);
+
+        System.out.println("Time Taken FixedFastSet vs HashSet:" + (timeTaken2 - timeTaken1));
     }
 
 }
