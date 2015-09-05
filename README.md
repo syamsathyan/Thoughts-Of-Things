@@ -1,4 +1,5 @@
-# Vuoto Commons Lib
+Vuoto Commons Lib
+===================
 #### A set of commonly used highly optmized routines, classes and functions.
 
 + Strings - String manipulation that uses FixedFastStringBuilder, utilizes jvm string pool and provides fast light methods.
@@ -10,4 +11,17 @@
 + io.LocalFileHelper - General purpose local file creation and stream sinking utils
 + io.StreamHelper - IO Stream helper methods.
 + command.SystemCommandExecutor - Command executor with process support, interrupt handling, streaming io etc
+
+Tests
+=====
+FixedFastSet
+------------
+###### Sequential Add - Compare with HashSet ######
+    1. Time Taken by FastFixedSet(s):0.011682581
+    2. Time Taken by HashSet(s):0.032001233
+    HashSet took :0.020318652 seconds more than FixedFastSet
+###### Random Add - Compare with HashSet #######
+    1. Time Taken by FastFixedSet(s):0.007161369
+    2. Time Taken by HashSet(s):0.010048395
+    HashSet took :0.002887026 seconds more than FixedFastSet
 
