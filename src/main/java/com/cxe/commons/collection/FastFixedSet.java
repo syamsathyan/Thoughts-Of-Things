@@ -2,6 +2,7 @@ package com.cxe.commons.collection;
 
 import com.cxe.commons.Strings;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
@@ -60,7 +61,7 @@ public class FastFixedSet<V> implements Set<V> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return Arrays.copyOf(values,count);
     }
 
     @Override
