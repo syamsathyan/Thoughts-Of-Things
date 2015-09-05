@@ -146,5 +146,4 @@ public class FastSetTest {
         System.out.println("HashSet took :" + (seconds2 - seconds1) + " seconds more than FixedFastSet");
         assertTrue(set2.size() == count);
     }
-
 }

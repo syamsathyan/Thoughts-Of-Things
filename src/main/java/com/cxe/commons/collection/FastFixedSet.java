@@ -77,31 +77,22 @@ public class FastFixedSet<V> implements Set<V> {
         if (values.length == count) {
             return false;
         } else {
-            //See if current counter pointing slot is empty
-            if (values[count] == null) {
-                values[count] = v;
-                count++;
-                return true;
-            } else {
-                //Full iteration
-                for (int i = 0; i < values.length; i++) {
-                    if (values[i] == null) {
-                        values[i] = v;
-                        count++;
-                        return true;
-                    }
-                }
-            }
+            //current counter slot is always empty
+            values[count] = v;
+            count++;
+            return true;
         }
-        return false;
     }
 
     @Override
     public boolean remove(Object o) {
         for (int i = 0; i < values.length; i++) {
-            if (values[i]!=null && values[i].equals(o)) {
-                values[i] = null;
+            if (o.equals(values[i])) {
+                //reduce size (now count points to a non empty slot for swapping into the newly emptied slot)
                 count--;
+                //Swap last item to emptied location
+                values[i] = values[count];
+                values[count] = null;
                 return true;
             }
         }
