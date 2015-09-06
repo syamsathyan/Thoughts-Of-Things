@@ -12,6 +12,8 @@ Vuoto Commons Lib
 + **io.StreamHelper** - IO Stream helper methods.
 + **command.SystemCommandExecutor** - Command executor with process support, interrupt handling, streaming io etc
 + **collection.FixedFastSet** - Set implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with HashSet
++ **collection.FixedFastList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
++ **HashUtils** - Hashing utils for conflict avoidance and consistent key building
 
 Tests
 =====
