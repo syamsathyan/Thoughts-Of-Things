@@ -31,7 +31,7 @@ FixedFastList
 ###### Sequential Add (10000000 items) - Comparing with ArrayList ######
     1. Time Taken by FastFixedList(s):2.217606438
     2. Time Taken by ArrayList(s):3.007124955
-    ArrayList took :0.7895185170000003 seconds more than FixedFastSet
+    ArrayList took :0.7895185170000003 seconds more than FixedFastList
 
 
 
