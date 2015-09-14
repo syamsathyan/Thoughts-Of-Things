@@ -118,10 +118,11 @@ public class FastFixedPump<V> implements Collection<V> {
     }
 
     /**
-     * @return null when pump is empty as in real world
+     * @return Empty when pump runs dry, else pumping volume quantity is pumped out
      */
     public Object[] pump() {
         if (current == 0) {
+            //Pump is running dry, and returns empty (never null)
             return EMPTY_ELEMENTDATA;
         }
         int valveCounter = 0;
