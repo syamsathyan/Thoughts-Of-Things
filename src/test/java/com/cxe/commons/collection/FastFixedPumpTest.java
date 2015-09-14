@@ -80,9 +80,10 @@ public class FastFixedPumpTest {
     //TODO work on why pump is not pumping out last remnansts issue
     @Test
     public void test_Pumping() {
-        System.out.println("###### FastFixedPumpTest Pumping 2 at a time for total 4 ######");
         int count = 4;
-        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, 4);
+        int pumpingVolume = 4;
+        System.out.println("###### FastFixedPumpTest Pumping ###### Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
         }
@@ -90,12 +91,39 @@ public class FastFixedPumpTest {
         //First Pump Cannot be null
         Object[] pumped1 = fastFixedPump.pump();
         assertTrue(pumped1 != null);
+        assertTrue(pumped1.length == pumpingVolume);
         System.out.println("###### Pumped: " + pumped1.length + ":" + Arrays.toString(pumped1));
         Object[] pumped2 = fastFixedPump.pump();
         assertTrue(pumped2 != null);
+        assertTrue(pumped2.length == count-pumpingVolume);
         System.out.println("###### Pumped: " + pumped2.length + ":" + Arrays.toString(pumped2));
         Object[] pumped3 = fastFixedPump.pump();
         assertTrue(pumped3 != null);
         System.out.println("###### Pumped: " + pumped3.length + ":" + Arrays.toString(pumped3));
+    }
+
+    //TODO work on why pump is not pumping out last remnansts issue
+    @Test
+    public void test_Pumping_lastDrop() {
+        int count = 4;
+        int pumpingVolume = 2;
+        System.out.println("###### FastFixedPumpTest lastDrop ###### Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
+        for (int i = 0; i < count; i++) {
+            fastFixedPump.add(i);
+        }
+        assertTrue(fastFixedPump.size() == count);
+        //First Pump Cannot be null
+        Object[] pumped1 = fastFixedPump.pump();
+        assertTrue(pumped1 != null);
+        assertTrue(pumped1.length == pumpingVolume);
+        System.out.println("###### Pumped: " + pumped1.length + ":" + Arrays.toString(pumped1));
+        Object[] pumped2 = fastFixedPump.pump();
+        assertTrue(pumped2 != null);
+        assertTrue(pumped2.length == pumpingVolume);
+        System.out.println("###### Pumped: " + pumped2.length + ":" + Arrays.toString(pumped2));
+        Object[] lastDrop = fastFixedPump.lastDrop();
+        System.out.println("###### Last Drop: " + Arrays.toString(lastDrop));
+        assertTrue(lastDrop.length == pumpingVolume);
     }
 }

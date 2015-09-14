@@ -21,6 +21,10 @@ import java.util.Set;
  * synchronizing on some object that naturally encapsulates the list.
  * <p/>
  * Created by sathyasy on 9/13/15.
+ *
+ * Returns Empty in case of DryRun
+ * Receding (last drop) can be pumped again and again and will return the same last pumped volume
+ *
  */
 public class FastFixedPump<V> implements Collection<V> {
 
@@ -138,6 +142,14 @@ public class FastFixedPump<V> implements Collection<V> {
         }
         return valve;
     }
+
+    /**
+     * @return Empty when pump runs dry, else pumping volume quantity is pumped out
+     */
+    public Object[] lastDrop() {
+        return valve;
+    }
+
 
     @Override
     public boolean containsAll(Collection<?> c) {
