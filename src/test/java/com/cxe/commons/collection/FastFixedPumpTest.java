@@ -18,16 +18,15 @@ package com.cxe.commons.collection;
 import org.junit.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import static org.junit.Assert.assertTrue;
 
 /**
  * @author sathyasy
  */
-public class FastListTest {
+public class FastFixedPumpTest {
 
-    public FastListTest() {
+    public FastFixedPumpTest() {
     }
 
     @BeforeClass
@@ -51,54 +50,47 @@ public class FastListTest {
      */
     @Test
     public void testAddRemove() {
-        System.out.println("Add");
-        FastFixedList set = new FastFixedList(1);
+        System.out.println("FastFixedPumpTest Add");
+        FastFixedPump fastFixedPump = new FastFixedPump(1, 1);
         String value = "V";
-        set.add(value);
-        assertTrue(set.size() == 1);
-        assertTrue(set.remove(value));
-        assertTrue(set.size() == 0);
+        fastFixedPump.add(value);
+        assertTrue(fastFixedPump.size() == 1);
+        assertTrue(fastFixedPump.remove(value));
+        assertTrue(fastFixedPump.size() == 0);
     }
 
 
     @Test
     public void testAddALot() {
-        System.out.println("AddALot");
+        System.out.println("FastFixedPumpTest AddALot");
         long begin = System.nanoTime();
         int count = 100000;
-        FastFixedList set = new FastFixedList(count);
+        FastFixedPump fastFixedPump = new FastFixedPump(count, 4);
         for (int i = 0; i < count; i++) {
-            set.add(i);
+            fastFixedPump.add(i);
         }
         long end = System.nanoTime();
-        assertTrue(set.size() == count);
-        System.out.println(set.toString());
+        assertTrue(fastFixedPump.size() == count);
+        System.out.println(fastFixedPump.toString());
         long timeTaken = end - begin;
         System.out.println("AddALot Time Taken:" + timeTaken);
     }
 
     @Test
-    public void testAdd_Compare_ArrayList() {
-        System.out.println("###### Add_Sequential_Compare_ArrayList ######");
-        int count = 10000000;
-        FastFixedList set = new FastFixedList(count);
-        long begin = System.nanoTime();
+    public void test_Pumping() {
+        System.out.println("###### FastFixedPumpTest Pumping ######");
+        int count = 4;
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, 2);
         for (int i = 0; i < count; i++) {
-            set.add(i);
+            fastFixedPump.add(i);
         }
-        long timeTaken1 = System.nanoTime() - begin;
-        double seconds1 = ((double)timeTaken1 / 1000000000);
-        System.out.println("Time Taken by FastFixedList(s):" + seconds1);
-
-        ArrayList set2 = new ArrayList(count);
-        begin = System.nanoTime();
-        for (int i = 0; i < count; i++) {
-            set2.add(i);
-        }
-        long timeTaken2 = System.nanoTime() - begin;
-        double seconds2 = ((double)timeTaken2 / 1000000000);
-        System.out.println("Time Taken by ArrayList(s):" + seconds2);
-        System.out.println("ArrayList took :" + (seconds2 - seconds1) + " seconds more than FixedFastSet");
-        assertTrue(set.size() == count);
+        assertTrue(fastFixedPump.size() == count);
+        //First Pump Cannot be null
+        Object[] pumped1 = fastFixedPump.pump();
+        assertTrue(pumped1 != null);
+        Object[] pumped2 = fastFixedPump.pump();
+        assertTrue(pumped2 != null);
+        Object[] pumped3 = fastFixedPump.pump();
+        assertTrue(pumped3 == null);
     }
 }

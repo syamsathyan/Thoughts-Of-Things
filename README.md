@@ -1,6 +1,6 @@
-Vuoto Commons Lib
+CXE(Center for Engineering Excellence)  - FlyWheel
 ===================
-#### A set of commonly used highly optmized routines, classes and functions.
+#### A set of commonly used highly optimized routines, classes and functions.
 
 + **Strings** - String manipulation that uses FixedFastStringBuilder, utilizes jvm string pool and provides fast light methods.
 + **DateUtils** - Joda utilities
@@ -14,6 +14,7 @@ Vuoto Commons Lib
 + **collection.FixedFastSet** - Set implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with HashSet
 + **collection.FixedFastList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
 + **HashUtils** - Hashing utils for conflict avoidance and consistent key building
++ **FastFixedPump** - Fast Collection with ability to pump out (evict) fixed number of elements per access, threads safe and implemented for an IOT application where sensory data eviction required at periodic intervals as fixed parts
 
 Tests
 =====

@@ -12,7 +12,7 @@ import java.util.Set;
  * Wrote as a basic necessity for implementing other Collections
  * Created by sathyasy on 9/4/15.
  */
-public class FastFixedList<V> implements Set<V> {
+public class FastFixedList<V> implements Collection<V> {
 
     int count;
     Object[] values;
