@@ -144,7 +144,8 @@ public class FastFixedPump<V> implements Collection<V> {
     }
 
     /**
-     * @return Empty when pump runs dry, else pumping volume quantity is pumped out
+     * @return Last pumped volume (retained in valve) is given out
+     * Safe residue, for status UI, High volume Web traffic etc
      */
     public Object[] lastDrop() {
         return valve;
