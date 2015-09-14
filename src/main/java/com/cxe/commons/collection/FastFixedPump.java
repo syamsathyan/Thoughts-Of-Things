@@ -10,8 +10,8 @@ import java.util.Set;
 /**
  * Fast and Fixed List Collection implementation with Pump features added for fixed element evict
  * Wrote as a basic necessity for implementing cache eviction for IOT - DCM
- *
- *<p><strong>Note that this implementation is not synchronized.</strong>
+ * <p/>
+ * <p><strong>Note that this implementation is not synchronized.</strong>
  * If multiple threads access an <tt>ArrayList</tt> instance concurrently,
  * and at least one of the threads modifies the list structurally, it
  * <i>must</i> be synchronized externally.  (A structural modification is
@@ -19,7 +19,7 @@ import java.util.Set;
  * resizes the backing array; merely setting the value of an element is not
  * a structural modification.)  This is typically accomplished by
  * synchronizing on some object that naturally encapsulates the list.
- *
+ * <p/>
  * Created by sathyasy on 9/13/15.
  */
 public class FastFixedPump<V> implements Collection<V> {
@@ -29,7 +29,7 @@ public class FastFixedPump<V> implements Collection<V> {
     int[] hashlist;
     int pumpingVolume;
     Object[] valve;
-    //private static final Object[] EMPTY_ELEMENTDATA = {};
+    private static final Object[] EMPTY_ELEMENTDATA = {};
 
     public FastFixedPump(int size, int pumpingVolume) {
         if (size > 0) {
@@ -122,15 +122,16 @@ public class FastFixedPump<V> implements Collection<V> {
      */
     public Object[] pump() {
         if (current == 0) {
-            return null;
+            return EMPTY_ELEMENTDATA;
         }
-        for (int i = 0; i < values.length && i < pumpingVolume; i++) {
+        int valveCounter = 0;
+        while (current != 0 && valveCounter < pumpingVolume) {
             //Pre-fill the valve until length is reached or till pumping volume is reached
-            valve[i] = values[i];
             //Shrink the pointer
             current--;
             //Swap the pointer item into the first slot (now pulled into valve)
-            values[i] = values[current];
+            valve[valveCounter] = values[current];
+            valveCounter++;
             //Make current as empty (for freeing up)
             values[current] = null;
         }

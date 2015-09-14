@@ -18,6 +18,7 @@ package com.cxe.commons.collection;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 
@@ -79,9 +80,9 @@ public class FastFixedPumpTest {
     //TODO work on why pump is not pumping out last remnansts issue
     @Test
     public void test_Pumping() {
-        System.out.println("###### FastFixedPumpTest Pumping ######");
+        System.out.println("###### FastFixedPumpTest Pumping 2 at a time for total 4 ######");
         int count = 4;
-        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, 2);
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, 4);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
         }
@@ -89,9 +90,12 @@ public class FastFixedPumpTest {
         //First Pump Cannot be null
         Object[] pumped1 = fastFixedPump.pump();
         assertTrue(pumped1 != null);
+        System.out.println("###### Pumped: " + pumped1.length + ":" + Arrays.toString(pumped1));
         Object[] pumped2 = fastFixedPump.pump();
         assertTrue(pumped2 != null);
+        System.out.println("###### Pumped: " + pumped2.length + ":" + Arrays.toString(pumped2));
         Object[] pumped3 = fastFixedPump.pump();
-        assertTrue(pumped3 == null);
+        assertTrue(pumped3 != null);
+        System.out.println("###### Pumped: " + pumped3.length + ":" + Arrays.toString(pumped3));
     }
 }
