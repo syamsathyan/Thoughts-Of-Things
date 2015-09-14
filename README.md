@@ -1,8 +1,9 @@
 FlyWheel - IOT
 ===================
 #### A set of commonly used highly optimized routines, classes and functions.
-> Born out of our experiment's in IOT
-> Mostly oldschool libs transitioning to IOT and DataScience labs  helping our developers with ~sense:feed:sample:log~ flow
+> Born out of our experiment's in IOT  
+> Mostly olds chool libs transitioning to IOT and DataScience labs  
+> Assists with ~sense:feed:sample:log~ flow 
 
 + **Strings** - String manipulation that uses FixedFastStringBuilder, utilizes jvm string pool and provides fast light methods.
 + **DateUtils** - Joda utilities
