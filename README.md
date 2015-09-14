@@ -18,6 +18,7 @@ FlyWheel - IOT
 + **collection.FixedFastList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
 + **HashUtils** - Hashing utils for conflict avoidance and consistent key building
 + **FastFixedPump** - Fast Collection with ability to pump out (evict) fixed number of elements per access, threads safe and implemented for an IOT application where sensory data eviction required at periodic intervals as fixed parts
++ **shuffle.Sattolo** - Sattolo shuffling
 
 Tests
 =====
