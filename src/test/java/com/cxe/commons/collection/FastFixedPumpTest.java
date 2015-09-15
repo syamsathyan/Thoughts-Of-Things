@@ -20,6 +20,7 @@ import org.junit.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -72,9 +73,8 @@ public class FastFixedPumpTest {
         }
         long end = System.nanoTime();
         assertTrue(fastFixedPump.size() == count);
-        System.out.println(fastFixedPump.toString());
         long timeTaken = end - begin;
-        System.out.println("AddALot Time Taken:" + timeTaken);
+        System.out.println("Time Taken:" + timeTaken);
     }
 
     //TODO work on why pump is not pumping out last remnansts issue
@@ -82,7 +82,7 @@ public class FastFixedPumpTest {
     public void test_Pumping() {
         int count = 4;
         int pumpingVolume = 4;
-        System.out.println("###### FastFixedPumpTest Pumping ###### Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### FastFixedPumpTest Pumping Count:" + count + ", PumpingVolume:" + pumpingVolume);
         FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
@@ -92,14 +92,48 @@ public class FastFixedPumpTest {
         Object[] pumped1 = fastFixedPump.pump();
         assertTrue(pumped1 != null);
         assertTrue(pumped1.length == pumpingVolume);
-        System.out.println("###### Pumped: " + pumped1.length + ":" + Arrays.toString(pumped1));
+        System.out.println("Pumped 1: " + pumped1.length + ":" + Arrays.toString(pumped1));
         Object[] pumped2 = fastFixedPump.pump();
         assertTrue(pumped2 != null);
-        assertTrue(pumped2.length == count-pumpingVolume);
-        System.out.println("###### Pumped: " + pumped2.length + ":" + Arrays.toString(pumped2));
+        assertTrue(pumped2.length == count - pumpingVolume);
+        System.out.println("Pumped 2 : " + pumped2.length + ":" + Arrays.toString(pumped2));
         Object[] pumped3 = fastFixedPump.pump();
         assertTrue(pumped3 != null);
-        System.out.println("###### Pumped: " + pumped3.length + ":" + Arrays.toString(pumped3));
+        System.out.println("Pumped 3: " + pumped3.length + ":" + Arrays.toString(pumped3));
+    }
+
+    //TODO work on why pump is not pumping out last remnansts issue
+    @Test
+    public void test_Pumping_with_Container() {
+        int count = 6;
+        int pumpingVolume = 2;
+        System.out.println("###### FastFixedPumpTest_Pumping_To_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
+        for (int i = 0; i < count; i++) {
+            fastFixedPump.add(i);
+        }
+        assertTrue(fastFixedPump.size() == count);
+        //First Pump Cannot be null
+        Object[] pumped1 = fastFixedPump.pump();
+        System.out.println("Pumped 1: " + Arrays.toString(pumped1) + " Hash" + pumped1.hashCode());
+        assertTrue(pumped1 != null);
+        assertTrue(pumped1.length == pumpingVolume);
+        Object[] pumped2 = fastFixedPump.pump();
+        assertTrue(pumped2 != null);
+        assertTrue(pumped2.length == pumpingVolume);
+        System.out.println("Pumped 2: " + Arrays.toString(pumped2)+" Hash"+pumped2.hashCode());
+        System.out.println("Check Pumped 1: " + Arrays.toString(pumped1) + " --- It Changed and shows same values as Pump2!!");
+        assertTrue(Arrays.deepEquals(pumped1, pumped2));
+        System.out.println("Hence, Pumped 1 Collection Hash === Pumped 2 Collection Hash");
+        assertTrue(pumped1.hashCode() == pumped2.hashCode());
+        Object[] pumped3 = new Object[pumpingVolume];
+        pumped3 = fastFixedPump.pump(pumped3);
+        assertTrue(Arrays.deepEquals(pumped2, pumped3));
+        System.out.println("Pumped 3: " + Arrays.toString(pumped3) + " Hash" + pumped3.hashCode());
+        System.out.println("Even though we Pumped 3 into a Container, the internal valve is going to be having the same state as a regular pumping");
+        System.out.println("Check Pumped 2: " + Arrays.toString(pumped2) + " --- It Changed and shows same values as Pump3!!");
+        System.out.println("BUT - Pumped 2 Collection Hash:" + pumped2.hashCode() + " !== Pumped 3 Collection Hash:" + pumped3.hashCode());
+        assertTrue(pumped3 != null);
     }
 
     //TODO work on why pump is not pumping out last remnansts issue
@@ -107,7 +141,7 @@ public class FastFixedPumpTest {
     public void test_Pumping_lastDrop() {
         int count = 4;
         int pumpingVolume = 2;
-        System.out.println("###### FastFixedPumpTest lastDrop ###### Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### FastFixedPumpTest_LastDrop Count:" + count + ", PumpingVolume:" + pumpingVolume);
         FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
@@ -117,13 +151,13 @@ public class FastFixedPumpTest {
         Object[] pumped1 = fastFixedPump.pump();
         assertTrue(pumped1 != null);
         assertTrue(pumped1.length == pumpingVolume);
-        System.out.println("###### Pumped: " + pumped1.length + ":" + Arrays.toString(pumped1));
+        System.out.println("Pumped: " + pumped1.length + ":" + Arrays.toString(pumped1));
         Object[] pumped2 = fastFixedPump.pump();
         assertTrue(pumped2 != null);
         assertTrue(pumped2.length == pumpingVolume);
-        System.out.println("###### Pumped: " + pumped2.length + ":" + Arrays.toString(pumped2));
+        System.out.println("Pumped: " + pumped2.length + ":" + Arrays.toString(pumped2));
         Object[] lastDrop = fastFixedPump.lastDrop();
-        System.out.println("###### Last Drop: " + Arrays.toString(lastDrop));
+        System.out.println("Last Drop: " + Arrays.toString(lastDrop));
         assertTrue(lastDrop.length == pumpingVolume);
     }
 }

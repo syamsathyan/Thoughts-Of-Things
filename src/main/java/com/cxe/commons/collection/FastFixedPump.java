@@ -123,6 +123,7 @@ public class FastFixedPump<V> implements Collection<V> {
 
     /**
      * @return Empty when pump runs dry, else pumping volume quantity is pumped out
+     * Returned Array is not a new Object, rather the valve with the last pumped volume is returned
      */
     public Object[] pump() {
         if (current == 0) {
@@ -141,6 +142,30 @@ public class FastFixedPump<V> implements Collection<V> {
             values[current] = null;
         }
         return valve;
+    }
+
+    /**
+     * @return Empty when pump runs dry, else pumping volume quantity is pumped out to the Container parameter
+     */
+    public Object[] pump(Object[] container) {
+        if (current == 0) {
+            //Pump is running dry, and returns empty (never null)
+            return EMPTY_ELEMENTDATA;
+        }
+        int valveCounter = 0;
+        while (current != 0 && valveCounter < pumpingVolume) {
+            //Pre-fill the valve until length is reached or till pumping volume is reached
+            //Shrink the pointer
+            current--;
+            //Swap the pointer item into the first slot (now pulled into valve)
+            valve[valveCounter] = values[current];
+            //Copy the same into the Container ( valve has the same data, but user has placed a container to collect)
+            container[valveCounter] = values[current];
+            valveCounter++;
+            //Make current as empty (for freeing up)
+            values[current] = null;
+        }
+        return container;
     }
 
     /**
