@@ -2,7 +2,7 @@ FlyWheel - IOT
 ===================
 #### A set of commonly used highly optimized routines, classes and functions.
 > Born out of our experiment's in IOT  
-> Mostly olds chool libs transitioning to IOT and DataScience labs  
+> Mostly old school libs transitioning to IOT and DataScience labs  
 > Assists with ~sense:feed:sample:log~ flow 
 
 + **Strings** - String manipulation that uses FixedFastStringBuilder, utilizes jvm string pool and provides fast light methods.
@@ -39,7 +39,78 @@ FixedFastList
     1. Time Taken by FastFixedList(s):2.217606438
     2. Time Taken by ArrayList(s):3.007124955
     ArrayList took :0.7895185170000003 seconds more than FixedFastList
-
-
-
-
+    
+Sattolo Shuffle
+------------
+###### Shuffle Loop
+    String[] a = {"S", "O", "Y", "A"};  
+    String[] originalBackup = {"S", "O", "Y", "A"};  
+    Sattolo.cycle(a);  
+    while(!Arrays.deepEquals(originalBackup, a)) {
+     System.out.println(Arrays.toString(a));  
+     Sattolo.cycle(a);  
+    }  
+###### Shuffle Sample run
+[Y, A, O, S]  
+[O, S, A, Y]   
+[S, Y, O, A]  
+[A, O, S, Y]  
+[Y, A, O, S]  
+[S, Y, A, O]  
+[O, A, S, Y]  
+[Y, S, O, A]  
+[S, O, A, Y]  
+[A, S, Y, O]  
+[Y, O, S, A]  
+[A, Y, O, S]  
+[Y, O, S, A]  
+[A, S, Y, O]  
+[S, O, A, Y]  
+[Y, A, S, O]  
+[O, S, Y, A]  
+[S, Y, A, O]  
+[O, S, Y, A]  
+[Y, A, S, O]  
+[S, O, A, Y]  
+[A, Y, O, S]  
+[O, S, Y, A]  
+[A, Y, O, S]  
+[O, S, Y, A]  
+[A, O, S, Y]  
+[O, S, Y, A]  
+[Y, O, A, S]  
+[A, Y, S, O]  
+[O, A, Y, S]  
+[S, O, A, Y]  
+[Y, A, S, O]  
+[S, O, A, Y]  
+[Y, A, S, O]  
+[O, Y, A, S]  
+[Y, S, O, A]  
+[S, A, Y, O]   
+[O, S, A, Y]  
+[Y, A, O, S]   
+[O, Y, S, A]  
+[Y, S, A, O]  
+[O, A, Y, S]  
+[Y, O, S, A]  
+[A, Y, O, S]  
+[O, S, Y, A]  
+[S, A, O, Y]  
+[A, Y, S, O]  
+[Y, S, O, A]  
+[S, O, A, Y]  
+[A, S, Y, O]  
+[Y, O, S, A]  
+[O, A, Y, S]  
+[S, O, A, Y]  
+[Y, S, O, A]  
+[S, O, A, Y]  
+[O, Y, S, A]  
+[Y, A, O, S]  
+[O, S, A, Y]  
+[A, Y, S, O]  
+[Y, S, O, A]  
+[S, A, Y, O]  
+[A, Y, O, S]  
+[Y, S, A, O]  

@@ -3,7 +3,10 @@ package com.cxe.commons.shuffle;
 import com.cxe.commons.BaseGUIDGenerator;
 import org.junit.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -26,25 +29,29 @@ public class SattoloTest {
 
     @Before
     public void setUp() {
-        BaseGUIDGenerator.TestRandomIdGenerator(5, 6);
+
     }
 
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of testBase62 method, of class Strings.
-     */
     @Test
     public void testcycle() {
+        System.out.println("#### SattoloTest Test_Cycle");
         String[] a = {"S", "O", "Y", "A"};
-        String[]originalBackup = {"S", "O", "Y", "A"};
-        int aLength = a.length;
+        System.out.println("Seed:" + Arrays.toString(a));
+        String[] originalBackup = {"S", "O", "Y", "A"};
         // shuffle the array
+        System.out.println("-------------------------");
+        System.out.println("#Going To loop until one of the outcome matches the original");
         Sattolo.cycle(a);
-        assertTrue(a.length == aLength);
-        assertFalse(Arrays.equals(originalBackup,a));
-        System.out.println("Shuffled Outputs:" + Arrays.toString(a));
+        while(!Arrays.deepEquals(originalBackup, a))
+        {
+            System.out.println("Shuffled Output:" + Arrays.toString(a));
+            Sattolo.cycle(a);
+        }
+
+        assertTrue(a.length == originalBackup.length);
     }
 }
