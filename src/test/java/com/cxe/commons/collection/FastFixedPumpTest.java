@@ -126,14 +126,14 @@ public class FastFixedPumpTest {
         assertTrue(Arrays.deepEquals(pumped1, pumped2));
         System.out.println("Hence, Pumped 1 Collection Hash === Pumped 2 Collection Hash");
         assertTrue(pumped1.hashCode() == pumped2.hashCode());
-        Object[] pumped3 = new Object[pumpingVolume];
-        pumped3 = fastFixedPump.pump(pumped3);
-        assertTrue(Arrays.deepEquals(pumped2, pumped3));
-        System.out.println("Pumped 3: " + Arrays.toString(pumped3) + " Hash" + pumped3.hashCode());
+        Object[] pumped3Container = new Object[pumpingVolume];
+        pumped3Container = fastFixedPump.pump(pumped3Container);
+        assertTrue(Arrays.deepEquals(pumped2, pumped3Container));
+        System.out.println("Pumped 3: " + Arrays.toString(pumped3Container) + " Hash" + pumped3Container.hashCode());
         System.out.println("Even though we Pumped 3 into a Container, the internal valve is going to be having the same state as a regular pumping");
         System.out.println("Check Pumped 2: " + Arrays.toString(pumped2) + " --- It Changed and shows same values as Pump3!!");
-        System.out.println("BUT - Pumped 2 Collection Hash:" + pumped2.hashCode() + " !== Pumped 3 Collection Hash:" + pumped3.hashCode());
-        assertTrue(pumped3 != null);
+        System.out.println("BUT - Pumped 2 Collection Hash:" + pumped2.hashCode() + " !== Pumped 3 Collection Hash:" + pumped3Container.hashCode());
+        assertTrue(pumped3Container != null);
     }
 
     //TODO work on why pump is not pumping out last remnansts issue
