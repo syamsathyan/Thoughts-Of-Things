@@ -136,6 +136,43 @@ public class FastFixedPumpTest {
         assertTrue(pumped3Container != null);
     }
 
+    @Test
+    public void test_Pumping_with_small_Container() {
+        int count = 6;
+        int pumpingVolume = 4;
+        System.out.println("###### FastFixedPumpTest_Pumping_with_small_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
+        for (int i = 0; i < count; i++) {
+            fastFixedPump.add(i);
+        }
+        assertTrue(fastFixedPump.size() == count);
+        //First Pump Cannot be null
+        Object[] pumped1 = new Object[2];
+        Object[] resultantContainer= fastFixedPump.pump(pumped1);
+        assertTrue(pumped1 != null);
+        //Make sure the Pump didnt change the container due to smaller size and overflow prevention logic
+        assertTrue(pumped1.hashCode() == resultantContainer.hashCode());
+    }
+
+    @Test
+    public void test_Pumping_with_bigger_Container() {
+        int count = 6;
+        int pumpingVolume = 2;
+        System.out.println("###### FastFixedPumpTest_Pumping_with_Bigger_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        FastFixedPump<Integer> fastFixedPump = new FastFixedPump<Integer>(count, pumpingVolume);
+        for (int i = 0; i < count; i++) {
+            fastFixedPump.add(i);
+        }
+        assertTrue(fastFixedPump.size() == count);
+        //First Pump Cannot be null
+        Object[] pumped1 = new Object[12];
+        Object[] resultantContainer= fastFixedPump.pump(pumped1);
+        assertTrue(pumped1 != null);
+        //Make sure the Pump didnt change the container due to smaller size and overflow prevention logic
+        assertTrue(pumped1.hashCode() == resultantContainer.hashCode());
+    }
+
+
     //TODO work on why pump is not pumping out last remnansts issue
     @Test
     public void test_Pumping_lastDrop() {

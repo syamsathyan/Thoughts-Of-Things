@@ -5,7 +5,6 @@ import com.cxe.commons.Strings;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * Fast and Fixed List Collection implementation with Pump features added for fixed element evict
@@ -21,19 +20,18 @@ import java.util.Set;
  * synchronizing on some object that naturally encapsulates the list.
  * <p/>
  * Created by sathyasy on 9/13/15.
- *
+ * <p/>
  * Returns Empty in case of DryRun
  * Receding (last drop) can be pumped again and again and will return the same last pumped volume
- *
  */
 public class FastFixedPump<V> implements Collection<V> {
 
     int current;
     Object[] values;
     int[] hashlist;
-    int pumpingVolume;
+    final int pumpingVolume;
     Object[] valve;
-    private static final Object[] EMPTY_ELEMENTDATA = {};
+    private static final Object[] EMPTY_CONTAINER = {};
 
     public FastFixedPump(int size, int pumpingVolume) {
         if (size > 0) {
@@ -128,7 +126,7 @@ public class FastFixedPump<V> implements Collection<V> {
     public Object[] pump() {
         if (current == 0) {
             //Pump is running dry, and returns empty (never null)
-            return EMPTY_ELEMENTDATA;
+            return EMPTY_CONTAINER;
         }
         int valveCounter = 0;
         while (current != 0 && valveCounter < pumpingVolume) {
@@ -145,15 +143,19 @@ public class FastFixedPump<V> implements Collection<V> {
     }
 
     /**
+     * @param Object[] container to pump into, the length of the container is expected to be equal to that of Pumping Volume
      * @return Empty when pump runs dry, else pumping volume quantity is pumped out to the Container parameter
      */
     public Object[] pump(Object[] container) {
-        if (current == 0) {
+        if (current == 0 || container == null) {
             //Pump is running dry, and returns empty (never null)
-            return EMPTY_ELEMENTDATA;
+            return EMPTY_CONTAINER;
         }
+        //If a container is smaller than pumping volume then Container Overflow (IOOBExp) for sure, so reduce the pumping volume just for this case
+        //Becuase - We do not entertain data loss due to overflow!!
+        int tempPumpingVolume = container.length < pumpingVolume ? container.length : pumpingVolume;
         int valveCounter = 0;
-        while (current != 0 && valveCounter < pumpingVolume) {
+        while (current != 0 && valveCounter < tempPumpingVolume) {
             //Pre-fill the valve until length is reached or till pumping volume is reached
             //Shrink the pointer
             current--;
