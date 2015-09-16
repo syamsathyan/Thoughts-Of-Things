@@ -50,7 +50,7 @@ public class CyclicFixedPumpTest {
      */
     @Test
     public void testAddRemove() {
-        System.out.println("FastFixedPumpTest Add");
+        System.out.println("#### CyclicFixedPump Test_Add");
         CyclicFixedPump fastFixedPump = new CyclicFixedPump(1, 1);
         String value = "V";
         fastFixedPump.add(value);
@@ -59,10 +59,31 @@ public class CyclicFixedPumpTest {
         assertTrue(fastFixedPump.size() == 0);
     }
 
+    /**
+     * Test of Add and Remove method
+     */
+    @Test
+    public void testCyclicAdd() {
+        System.out.println("#### CyclicFixedPump Test_Cyclic_Add");
+        int count = 2;
+        CyclicFixedPump fastFixedPump = new CyclicFixedPump(count, 1);
+        fastFixedPump.add( "V");
+        fastFixedPump.add("S");
+        //Now theretically Evicts V and has X instead
+        fastFixedPump.add("X");
+        assertTrue(fastFixedPump.size() == count); // Regardless of the fact that we added 3 items;
+        Object[] pumped1 = new Object[1];
+        fastFixedPump.pump(pumped1);
+        assertTrue(pumped1[0] == "X");//Top was X
+        Object[] pumped2 = new Object[1];
+        fastFixedPump.pump(pumped2);
+        assertTrue(pumped2[0] == "S");
+    }
+
 
     @Test
     public void testAddALot() {
-        System.out.println("FastFixedPumpTest AddALot");
+        System.out.println("#### CyclicFixedPump AddALot");
         long begin = System.nanoTime();
         int count = 100000;
         CyclicFixedPump fastFixedPump = new CyclicFixedPump(count, 4);
@@ -79,7 +100,7 @@ public class CyclicFixedPumpTest {
     public void test_Pumping() {
         int count = 4;
         int pumpingVolume = 4;
-        System.out.println("###### FastFixedPumpTest Pumping Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### CyclicFixedPump Pumping Count:" + count + ", PumpingVolume:" + pumpingVolume);
         CyclicFixedPump<Integer> fastFixedPump = new CyclicFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
@@ -103,7 +124,7 @@ public class CyclicFixedPumpTest {
     public void test_Pumping_with_Container() {
         int count = 6;
         int pumpingVolume = 2;
-        System.out.println("###### FastFixedPumpTest_Pumping_To_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### CyclicFixedPump Count:" + count + ", PumpingVolume:" + pumpingVolume);
         CyclicFixedPump<Integer> fastFixedPump = new CyclicFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
@@ -117,7 +138,7 @@ public class CyclicFixedPumpTest {
         Object[] pumped2 = fastFixedPump.pump();
         assertTrue(pumped2 != null);
         assertTrue(pumped2.length == pumpingVolume);
-        System.out.println("Pumped 2: " + Arrays.toString(pumped2)+" Hash"+pumped2.hashCode());
+        System.out.println("Pumped 2: " + Arrays.toString(pumped2) + " Hash" + pumped2.hashCode());
         System.out.println("Check Pumped 1: " + Arrays.toString(pumped1) + " --- It Changed and shows same values as Pump2!!");
         assertTrue(Arrays.deepEquals(pumped1, pumped2));
         System.out.println("Hence, Pumped 1 Collection Hash === Pumped 2 Collection Hash");
@@ -136,7 +157,7 @@ public class CyclicFixedPumpTest {
     public void test_Pumping_with_small_Container() {
         int count = 6;
         int pumpingVolume = 4;
-        System.out.println("###### FastFixedPumpTest_Pumping_with_small_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### CyclicFixedPump Count:" + count + ", PumpingVolume:" + pumpingVolume);
         CyclicFixedPump<Integer> fastFixedPump = new CyclicFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
@@ -144,7 +165,7 @@ public class CyclicFixedPumpTest {
         assertTrue(fastFixedPump.size() == count);
         //First Pump Cannot be null
         Object[] pumped1 = new Object[2];
-        Object[] resultantContainer= fastFixedPump.pump(pumped1);
+        Object[] resultantContainer = fastFixedPump.pump(pumped1);
         assertTrue(pumped1 != null);
         //Make sure the Pump didnt change the container due to smaller size and overflow prevention logic
         assertTrue(pumped1.hashCode() == resultantContainer.hashCode());
@@ -154,7 +175,7 @@ public class CyclicFixedPumpTest {
     public void test_Pumping_with_bigger_Container() {
         int count = 6;
         int pumpingVolume = 2;
-        System.out.println("###### FastFixedPumpTest_Pumping_with_Bigger_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### CyclicFixedPump Test_Pumping_with_Bigger_Container Count:" + count + ", PumpingVolume:" + pumpingVolume);
         CyclicFixedPump<Integer> fastFixedPump = new CyclicFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);
@@ -162,7 +183,7 @@ public class CyclicFixedPumpTest {
         assertTrue(fastFixedPump.size() == count);
         //First Pump Cannot be null
         Object[] pumped1 = new Object[12];
-        Object[] resultantContainer= fastFixedPump.pump(pumped1);
+        Object[] resultantContainer = fastFixedPump.pump(pumped1);
         assertTrue(pumped1 != null);
         //Make sure the Pump didnt change the container due to smaller size and overflow prevention logic
         assertTrue(pumped1.hashCode() == resultantContainer.hashCode());
@@ -173,7 +194,7 @@ public class CyclicFixedPumpTest {
     public void test_Pumping_lastDrop() {
         int count = 4;
         int pumpingVolume = 2;
-        System.out.println("###### FastFixedPumpTest_LastDrop Count:" + count + ", PumpingVolume:" + pumpingVolume);
+        System.out.println("###### CyclicFixedPump Test_LastDrop Count:" + count + ", PumpingVolume:" + pumpingVolume);
         CyclicFixedPump<Integer> fastFixedPump = new CyclicFixedPump<Integer>(count, pumpingVolume);
         for (int i = 0; i < count; i++) {
             fastFixedPump.add(i);

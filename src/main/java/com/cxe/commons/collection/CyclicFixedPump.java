@@ -94,28 +94,37 @@ public class CyclicFixedPump<V> implements Collection<V> {
     @Override
     public boolean add(V v) {
         if (values.length == current) {
-            return false;
+            evictElement(0);
+            addAtEnd(v);
         } else {
-            //current slot is always empty, point new item there
-            values[current] = v;
-            current++;
-            return true;
+            addAtEnd(v);
         }
+        return true;
     }
 
     @Override
-    public boolean remove(Object o) {
+    public final boolean remove(Object o) {
         for (int i = 0; i < values.length; i++) {
             if (o.equals(values[i])) {
-                //reduce size (now current points to a non empty slot for swapping into the newly emptied slot)
-                current--;
-                //Swap last item to emptied location
-                values[i] = values[current];
-                values[current] = null;
+                evictElement(i);
                 return true;
             }
         }
         return false;
+    }
+
+    private final void addAtEnd(V v){
+        //current slot is always empty, point new item there
+        values[current] = v;
+        current++;
+    }
+
+    private final void evictElement(int i) {
+        //reduce size (now current points to a non empty slot for swapping into the newly emptied slot)
+        current--;
+        //Swap last item to emptied location
+        values[i] = values[current];
+        values[current] = null;
     }
 
     /**
@@ -130,7 +139,7 @@ public class CyclicFixedPump<V> implements Collection<V> {
         int valveCounter = 0;
         while (valveCounter < pumpingVolume) {
             cycleMaker = cycleMaker == 0 ? current : cycleMaker;
-            //Shrink the cicular pointer
+            //Shrink the circular pointer
             cycleMaker--;
             //Cycle from Marker to valve
             valve[valveCounter] = values[cycleMaker];
@@ -149,12 +158,12 @@ public class CyclicFixedPump<V> implements Collection<V> {
             return EMPTY_CONTAINER;
         }
         //If a container is smaller than pumping volume then Container Overflow (IOOBExp) for sure, so reduce the pumping volume just for this case
-        //Becuase - We do not entertain data loss due to overflow!!
+        //Because - We do not entertain data loss due to overflow!!
         int tempPumpingVolume = container.length < pumpingVolume ? container.length : pumpingVolume;
         int valveCounter = 0;
         while (valveCounter < tempPumpingVolume) {
             cycleMaker = cycleMaker == 0 ? current : cycleMaker;
-            //Shrink the cicular pointer
+            //Shrink the circular pointer
             cycleMaker--;
             //Cycle from Marker to valve
             valve[valveCounter] = values[cycleMaker];
