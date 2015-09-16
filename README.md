@@ -6,6 +6,7 @@ FlyWheel - IOT
 > Assists with ~sense:feed:sample:log~ flow 
 
 + **FastFixedPump** - Fast Collection with ability to pump out (evict) fixed number of elements per access, threads safe and implemented for an IOT application where sensory data eviction required at periodic intervals as fixed parts
++ **CyclicFixedPump** - Fast Collection with ability to pump from end to end of a linear collection and cycle without emptying the contents
 + **shuffle.Sattolo** - Sattolo shuffling
 + **ByteUtils** - General purpose utilities,Byte ~ Hex fast conversions etc.
 + **Math** - General purpose Math functions for Geo roundups, Ordinals
