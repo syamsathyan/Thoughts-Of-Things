@@ -52,6 +52,14 @@ public class DateUtils {
             .withZone(DateTimeZone.UTC); // For GMT
 
     /**
+     * Produces "01/01/2000"
+     */
+    private static final DateTimeFormatter cleanDateFormat = DateTimeFormat
+            .forPattern("ddMMyyyy")
+            .withLocale(Locale.US) // For common language
+            .withZone(DateTimeZone.UTC); // For GMT
+
+    /**
      * Produces "2000/01"
      */
     private static final DateTimeFormatter folderMaker_yearMonth = DateTimeFormat
@@ -133,6 +141,15 @@ public class DateUtils {
 
     /**
      * @param when The instant
+     *
+     * @return The instant formatted as "ddMMYY" (01092015)
+     */
+    public static String formatDate(ReadableInstant when) {
+        return cleanDateFormat.print(when);
+    }
+
+    /**
+     * @param when The instant
      * @param locale The required locale
      *
      * @return The instant formatted as "ddd, MMM dd" (Saturday, January 01)
@@ -153,7 +170,6 @@ public class DateUtils {
 
     /**
      * @author Syam
-     * @param dateTimeStr
      * @return null if error else returns a valid date
      */
     public static Date parseTimeOnly(String time) {
