@@ -2,6 +2,7 @@ package com.cxe.commons;
 
 import java.util.Date;
 import java.util.Locale;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Hours;
@@ -23,7 +24,6 @@ import org.joda.time.format.ISODateTimeFormat;
  * All times use the UTC time zone unless otherwise specified</p>
  *
  * @since 0.0.1
- *
  */
 public class DateUtils {
 
@@ -63,14 +63,14 @@ public class DateUtils {
      * Produces "2000/01"
      */
     private static final DateTimeFormatter folderMaker_yearMonth = DateTimeFormat
-            .forPattern("yyyy/MM")
+            .forPattern("yyyy" + Strings.FILE_SEPERATOR + "MM")
             .withLocale(Locale.US); // For common language
 
     /**
      * Produces "2000/01/01"
      */
     private static final DateTimeFormatter folderMaker_yearMonthDay = DateTimeFormat
-            .forPattern("yyyy/MM/dd")
+            .forPattern("yyyy" + Strings.FILE_SEPERATOR + "MM" + Strings.FILE_SEPERATOR + "dd")
             .withLocale(Locale.US); // For common language
 
     /**
@@ -92,13 +92,12 @@ public class DateUtils {
     }
 
     /**
-     * @param year The year (e.g. 2000)
-     * @param month The month (e.g. January is 1, December is 12)
-     * @param day The day of the month (e.g. 1 through to 31)
-     * @param hour The hour of the day (e.g. 0 through to 23)
+     * @param year   The year (e.g. 2000)
+     * @param month  The month (e.g. January is 1, December is 12)
+     * @param day    The day of the month (e.g. 1 through to 31)
+     * @param hour   The hour of the day (e.g. 0 through to 23)
      * @param minute The minute of the day (e.g. 0 through to 59)
      * @param second The second of the day (e.g. 0 through to 59)
-     *
      * @return The given instant with a UTC timezone
      */
     public static DateTime thenUtc(
@@ -113,7 +112,6 @@ public class DateUtils {
 
     /**
      * @param when The instant
-     *
      * @return The instant formatted as "yyyyMMdd"
      */
     public static String formatBasicDate(ReadableInstant when) {
@@ -121,9 +119,8 @@ public class DateUtils {
     }
 
     /**
-     * @param when The instant
+     * @param when   The instant
      * @param locale The required locale
-     *
      * @return The instant formatted as "yyyyMMdd"
      */
     public static String formatBasicDate(ReadableInstant when, Locale locale) {
@@ -132,7 +129,6 @@ public class DateUtils {
 
     /**
      * @param when The instant
-     *
      * @return The instant formatted as "ddd, MMM dd" (Saturday, January 01)
      */
     public static String formatFriendlyDate(ReadableInstant when) {
@@ -141,7 +137,6 @@ public class DateUtils {
 
     /**
      * @param when The instant
-     *
      * @return The instant formatted as "ddMMYY" (01092015)
      */
     public static String formatDate(ReadableInstant when) {
@@ -149,9 +144,8 @@ public class DateUtils {
     }
 
     /**
-     * @param when The instant
+     * @param when   The instant
      * @param locale The required locale
-     *
      * @return The instant formatted as "ddd, MMM dd" (Saturday, January 01)
      */
     public static String formatFriendlyDate(ReadableInstant when, Locale locale) {
@@ -160,7 +154,6 @@ public class DateUtils {
 
     /**
      * @param when The instant
-     *
      * @return The instant formatted as RFC 1123 e.g. "Sat, 01 Jan 2000 23:59:59
      * GMT"
      */
@@ -169,8 +162,8 @@ public class DateUtils {
     }
 
     /**
-     * @author Syam
      * @return null if error else returns a valid date
+     * @author Syam
      */
     public static Date parseTimeOnly(String time) {
         DateTime dateTime = rfc1123_timeOnly.parseDateTime(time);
@@ -178,9 +171,9 @@ public class DateUtils {
     }
 
     /**
-     * @author Syam
      * @param dateTimeStr
      * @return null if error else returns a valid date
+     * @author Syam
      */
     public static Date parseTimeOnly(String time, DateTimeFormatter dtf) {
         DateTime dateTime = dtf.parseDateTime(time);
@@ -188,65 +181,59 @@ public class DateUtils {
     }
 
     /**
-     * @author Syam
      * @param dateTimeStr
      * @return null if error else returns a valid Date and Time
+     * @author Syam
      */
     public static Date parseDateTime(String dateTimeStr) {
-        try
-        {
+        try {
             DateTime dateTime = rfc1123.parseDateTime(dateTimeStr);
             return dateTime.toDate();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return null;
         }
     }
 
     /**
      * Syam
-     * After hours of repeated errors, this is what it takes to convert web <form <input type="time">> to 
+     * After hours of repeated errors, this is what it takes to convert web <form <input type="time">> to
+     *
      * @param dateTimeStr
-     * @return 
+     * @return
      */
     public static DateTime parseISOWebDate(String dateTimeStr) {
         return DateTime.parse(dateTimeStr, ISODateTimeFormat.dateTimeParser());
     }
 
     /**
-     * @author Syam
      * @param dateTimeStr
      * @return null if error else returns a valid Local Date And Time
+     * @author Syam
      */
     public static LocalDate parseDateTimeToLocalDate(String dateTimeStr) {
-        try
-        {
+        try {
             DateTime dateTime = rfc1123.parseDateTime(dateTimeStr);
             return dateTime.toLocalDate();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return null;
         }
     }
 
     /**
-     * @author Syam
      * @param date String
      * @return null if error else returns a valid Local Date
+     * @author Syam
      */
     public static LocalDate parseDateToLocalDate(String dateTimeStr) {
-        try
-        {
+        try {
             DateTime dateTime = dateOnly.parseDateTime(dateTimeStr);
             return dateTime.toLocalDate();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return null;
         }
     }
 
     /**
-     *
      * @param LocalDate
      * @return age in years
      */
@@ -264,7 +251,6 @@ public class DateUtils {
 
     /**
      * @param when The instant in its timezone
-     *
      * @return The instant formatted as ISO8601_WEB e.g. "2000-01-02T03:04:05Z"
      */
     public static String formatISO8601(ReadableInstant when) {
@@ -272,9 +258,8 @@ public class DateUtils {
     }
 
     /**
-     * @param when The instant
+     * @param when   The instant
      * @param locale The required locale
-     *
      * @return The instant formatted as ISO8601_WEB e.g. "2000-01-02T03:04:05Z"
      */
     public static String formatISO8601(ReadableInstant when, Locale locale) {
@@ -283,9 +268,7 @@ public class DateUtils {
 
     /**
      * @param text The text representing a date and time in ISO8601_WEB format
-     *
      * @return The DateTime
-     *
      * @throws IllegalArgumentException If the text cannot be parsed
      */
     public static DateTime parseISO8601(String text) {
@@ -293,14 +276,13 @@ public class DateUtils {
     }
 
     /**
-     *
      * @return The instant formatted as yyyy/MM from current Time (GOOD for creating folders for file uploads)
      */
-    public static String getFilePathStyle_YearMonthNow(){
+    public static String getFilePathStyle_YearMonthNow() {
         return folderMaker_yearMonth.print(DateTime.now());
     }
 
-    public static String getFilePathStyle_YearMonthDayNow(){
+    public static String getFilePathStyle_YearMonthDayNow() {
         return folderMaker_yearMonthDay.print(DateTime.now());
     }
 

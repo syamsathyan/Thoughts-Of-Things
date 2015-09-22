@@ -16,35 +16,37 @@
 package com.cxe.commons;
 
 import java.util.Iterator;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
+
 import org.junit.Ignore;
 
 /**
- *
  * @author sathyasy
  */
 public class StringsTest {
-    
+
     public StringsTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -117,7 +119,58 @@ public class StringsTest {
         System.out.println("concealEmail");
         String email = "shine@gmail.com";
         String expResult = "sxxxx@gmail.com";
-        String result = Strings.concealEmail(email);
+        String result = Strings.concealEmail(email, null);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of concealEmail method, of class Strings.
+     */
+    @Test
+    public void testConcealEmail_longEmail() {
+        System.out.println("concealEmail_longEmail");
+        String email = "shine.sathyan.jason@finmastersails.co.uk";
+        String expResult = "sxxxxxxxxxxxxxxxxxx@finmastersails.co.uk";
+        String result = Strings.concealEmail(email, null);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of concealEmail method, of class Strings.
+     */
+    @Test
+    public void testConcealCharacters_Tail() {
+        System.out.println("#### ConcealCharacters_Tail");
+        String email = "U0001055UN6TYI";
+        String expResult = "U0001055xxxxxx";
+        String result = Strings.concealCharacters(email, 6, true, null);
+        System.out.println(result);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of concealEmail method, of class Strings.
+     */
+    @Test
+    public void testConcealCharacters_Front() {
+        System.out.println("#### ConcealCharacters_Front");
+        String email = "U0001055UN6TYI";
+        String expResult = "xxxxxx55UN6TYI";
+        String result = Strings.concealCharacters(email, 6, false, null);
+        System.out.println(result);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of concealEmail method, of class Strings.
+     */
+    @Test
+    public void testConcealCharacters_Front_With_Mask() {
+        System.out.println("#### ConcealCharacters_Front_with_Mask");
+        String email = "U0001055UN6TYI";
+        String expResult = "XXXXXX55UN6TYI";
+        String result = Strings.concealCharacters(email, 6, false, "X");
+        System.out.println(result);
         assertEquals(expResult, result);
     }
 
@@ -174,7 +227,7 @@ public class StringsTest {
         String result = Strings.joinFast(s1, s2);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of joinFast method, of class Strings.
      */
@@ -194,14 +247,14 @@ public class StringsTest {
     @Test
     public void testJoin_3args() {
         System.out.println("join_3args");
-       String s1 = "a";
+        String s1 = "a";
         String s2 = "b";
         String s3 = "c";
         String expResult = "abc";
         String result = Strings.join(s1, s2, s3);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of joinFast method, of class Strings.
      */
@@ -230,7 +283,7 @@ public class StringsTest {
         String result = Strings.join(s1, s2, s3, s4);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of join method, of class Strings.
      */
@@ -261,7 +314,7 @@ public class StringsTest {
         String result = Strings.join(s1, s2, s3, s4, s5);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of join method, of class Strings.
      */
@@ -294,7 +347,7 @@ public class StringsTest {
         String result = Strings.join(s1, s2, s3, s4, s5, s6);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of join method, of class Strings.
      */
@@ -329,7 +382,7 @@ public class StringsTest {
         String result = Strings.join(s1, s2, s3, s4, s5, s6, s7);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of join method, of class Strings.
      */
@@ -366,7 +419,7 @@ public class StringsTest {
         String result = Strings.join(s1, s2, s3, s4, s5, s6, s7, s8);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of join method, of class Strings.
      */
@@ -397,7 +450,7 @@ public class StringsTest {
         boolean result = Strings.isEmpty(input);
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of isEmpty method, of class Strings.
      */
@@ -533,5 +586,5 @@ public class StringsTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
