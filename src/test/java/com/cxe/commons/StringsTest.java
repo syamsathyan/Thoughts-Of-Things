@@ -579,6 +579,19 @@ public class StringsTest {
     }
 
     /**
+     * Test of fill method, of class Strings.
+     */
+    @Test
+    public void testFill_Large() {
+        System.out.println("#### fill Large Case");
+        String fillCharacter = "X";
+        int count = 100;
+        String result = Strings.fill(fillCharacter, count);
+        assertEquals(result.length(), 100);
+        System.out.println(result);
+    }
+
+    /**
      * Test of implode method, of class Strings.
      */
     @Ignore

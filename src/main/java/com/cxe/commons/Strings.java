@@ -728,7 +728,6 @@ public class Strings {
     public static final String fill(String fillCharacter, int count) {
         int fillCharacterLength = fillCharacter.length();
         char value[] = new char[fillCharacterLength * count];
-        count = value.length;
         for (int i = 0; i < count; i++) {
             fillCharacter.getChars(0, fillCharacterLength, value, i);
         }
