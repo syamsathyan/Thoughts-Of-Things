@@ -727,11 +727,12 @@ public class Strings {
      */
     public static final String fill(String fillCharacter, int count) {
         int fillCharacterLength = fillCharacter.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(fillCharacterLength * count);
+        char value[] = new char[fillCharacterLength * count];
+        count = value.length;
         for (int i = 0; i < count; i++) {
-            builder.append(fillCharacter, 1);
+            fillCharacter.getChars(0, fillCharacterLength, value, i);
         }
-        return builder.toString();
+        return new String(value, 0, count);
     }
 
     /**

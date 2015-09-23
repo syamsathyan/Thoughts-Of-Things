@@ -554,8 +554,8 @@ public class StringsTest {
      * Test of fill method, of class Strings.
      */
     @Ignore
-    public void testFill_ObjectArr_char() {
-        System.out.println("fill");
+    public void testFill_ObjectArr() {
+        System.out.println("fill_ObjectArr");
         Object[] fillCharacters = null;
         char seperator = ' ';
         String expResult = "";
@@ -568,16 +568,14 @@ public class StringsTest {
     /**
      * Test of fill method, of class Strings.
      */
-    @Ignore
-    public void testFill_String_int() {
+    @Test
+    public void testFill() {
         System.out.println("fill");
-        String fillCharacter = "";
-        int count = 0;
-        String expResult = "";
+        String fillCharacter = "X";
+        int count = 3;
+        String expResult = "XXX";
         String result = Strings.fill(fillCharacter, count);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
