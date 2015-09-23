@@ -553,21 +553,6 @@ public class StringsTest {
     /**
      * Test of fill method, of class Strings.
      */
-    @Ignore
-    public void testFill_ObjectArr() {
-        System.out.println("fill_ObjectArr");
-        Object[] fillCharacters = null;
-        char seperator = ' ';
-        String expResult = "";
-        String result = Strings.fill(fillCharacters, seperator);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of fill method, of class Strings.
-     */
     @Test
     public void testFill() {
         System.out.println("fill");

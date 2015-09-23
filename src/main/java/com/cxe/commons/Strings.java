@@ -703,23 +703,6 @@ public class Strings {
         return new String(value, 0, count - 1); // remove the last seperator from behind
     }
 
-    public static final String fill(Object[] fillCharacters, char seperator) {
-        //Create the fill
-        int count = fillCharacters.length;
-        FastStringBuilder builder = new FastStringBuilder();
-        for (int i = 0; i < count; i++) {
-            builder.append(fillCharacters[i]);
-            builder.append(seperator);
-        }
-        String filled = builder.toString(1); // reduce one from end
-
-        int l2 = filled.length();
-
-        builder.reset(l2);
-        builder.append(filled, l2);
-        return builder.toString();
-    }
-
     /**
      * @param fillCharacter - character to fill with
      * @param count         - the number of times the character is to be filled
