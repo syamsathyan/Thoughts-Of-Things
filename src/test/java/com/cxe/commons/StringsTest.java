@@ -494,36 +494,32 @@ public class StringsTest {
     /**
      * Test of joinFill method, of class Strings.
      */
-    @Ignore
-    public void testJoinFill_5args() {
-        System.out.println("joinFill");
-        String startString = "";
-        String fillCharacter = "";
-        char seperator = ' ';
-        int count = 0;
+    @Test
+    public void testJoinFill_Seperator() {
+        System.out.println("JoinFill_Seperator");
+        String startString = "Saramma-";
+        String fillCharacter = "X";
+        char seperator = ',';
+        int count = 2;
         String endString = "";
-        String expResult = "";
+        String expResult = "Saramma-X,X";
         String result = Strings.joinFill(startString, fillCharacter, seperator, count, endString);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of joinFill method, of class Strings.
      */
-    @Ignore
-    public void testJoinFill_4args() {
+    @Test
+    public void testJoinFill() {
         System.out.println("joinFill");
-        String startString = "";
-        String fillCharacter = "";
-        int count = 0;
-        String endString = "";
-        String expResult = "";
+        String startString = "Saramma";
+        String fillCharacter = ".";
+        int count = 1;
+        String endString = "Sathyadas";
+        String expResult = "Saramma.Sathyadas";
         String result = Strings.joinFill(startString, fillCharacter, count, endString);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

@@ -687,32 +687,20 @@ public class Strings {
      */
     public static final String joinFill(String startString, String fillCharacter, char seperator, int count, String endString) {
         //Create the fill
+        String filled = fill(fillCharacter, seperator, count);
+        return joinFast(startString, filled, endString);
+    }
+
+    public static final String fill(String fillCharacter, char seperator, int count) {
         int fillCharacterLength = fillCharacter.length();
         char value[] = new char[(fillCharacterLength * count) + count];
+        count = value.length;
         for (int i = 0; i < count; i++) {
             fillCharacter.getChars(0, fillCharacterLength, value, i);
             i++;
             value[i] = seperator;
         }
-        String filled = new String(value, 0, count - 1);
-        return joinFast(startString, filled, endString);
-    }
-
-    public static final String fill(String fillCharacter, char seperator, int count) {
-        //Create the fill
-        int fillCharacterLength = fillCharacter.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder((fillCharacterLength * count) + count);
-        for (int i = 0; i < count; i++) {
-            builder.append(fillCharacter, fillCharacterLength);
-            builder.append(seperator);
-        }
-        String filled = builder.toString(1); // reduce one from end
-
-        int l2 = filled.length();
-
-        builder.reset(l2);
-        builder.append(filled, l2);
-        return builder.toString();
+        return new String(value, 0, count - 1); // remove the last seperator from behind
     }
 
     public static final String fill(Object[] fillCharacters, char seperator) {
