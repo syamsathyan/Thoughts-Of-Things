@@ -735,6 +735,7 @@ public class Strings {
     }
 
     /**
+     * PHP Style implode
      * @param seperator
      * @param array
      * @return

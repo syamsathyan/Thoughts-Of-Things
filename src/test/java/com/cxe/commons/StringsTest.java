@@ -594,16 +594,15 @@ public class StringsTest {
     /**
      * Test of implode method, of class Strings.
      */
-    @Ignore
+    @Test
     public void testImplode() {
-        System.out.println("implode");
-        char seperator = ' ';
-        String[] array = null;
-        String expResult = "";
+        System.out.println("#### implode");
+        char seperator = '.';
+        String[] array = {"A", "B", "C", "D"};
+        String expResult = "A.B.C.D";
         String result = Strings.implode(seperator, array);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(result);
     }
 
 }
