@@ -529,17 +529,29 @@ public class StringsTest {
     /**
      * Test of fill method, of class Strings.
      */
-    @Ignore
-    public void testFill_3args() {
+    @Test
+    public void testFill_3args_Single() {
         System.out.println("fill");
-        String fillCharacter = "";
-        char seperator = ' ';
-        int count = 0;
-        String expResult = "";
+        String fillCharacter = "a";
+        char seperator = ',';
+        int count = 1;
+        String expResult = "a";
         String result = Strings.fill(fillCharacter, seperator, count);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of fill method, of class Strings.
+     */
+    @Test
+    public void testFill_3args_Multi() {
+        System.out.println("fill");
+        String fillCharacter = "a";
+        char seperator = ',';
+        int count = 2;
+        String expResult = "a,a";
+        String result = Strings.fill(fillCharacter, seperator, count);
+        assertEquals(expResult, result);
     }
 
     /**
