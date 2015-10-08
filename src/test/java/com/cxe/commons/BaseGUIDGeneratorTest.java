@@ -17,8 +17,6 @@ package com.cxe.commons;
 
 import org.junit.*;
 
-import java.util.Iterator;
-
 import static org.junit.Assert.*;
 
 /**
@@ -39,7 +37,7 @@ public class BaseGUIDGeneratorTest {
 
     @Before
     public void setUp() {
-        BaseGUIDGenerator.TestRandomIdGenerator(5, 6);
+        BaseGUIDGenerator.demo(5, 6);
     }
 
     @After

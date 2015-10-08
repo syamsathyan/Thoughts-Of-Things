@@ -57,12 +57,12 @@ public class BaseGUIDGenerator
 
 
   /**
-   * TestRandomIdGenerator(5, 6);
+   * demo(5, 6);
    *
    * @param count
    * @param length
    */
-  public static void TestRandomIdGenerator( int count, int length )
+  public static void demo(int count, int length)
   {
     System.out.println( "-------------BASE 62-------------" );
     // create five IDs of six, base 62 characters

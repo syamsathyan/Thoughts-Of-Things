@@ -52,12 +52,21 @@ public class DateUtils {
             .withZone(DateTimeZone.UTC); // For GMT
 
     /**
-     * Produces "01/01/2000"
+     * Produces "01012000"
      */
     private static final DateTimeFormatter cleanDateFormat = DateTimeFormat
             .forPattern("ddMMyyyy")
             .withLocale(Locale.US) // For common language
             .withZone(DateTimeZone.UTC); // For GMT
+
+    /**
+     * Produces "01012000121022"
+     */
+    private static final DateTimeFormatter cleanDateFormat2 = DateTimeFormat
+            .forPattern("ddMMyyyyHHmmss")
+            .withLocale(Locale.US) // For common language
+            .withZone(DateTimeZone.UTC); // For GMT
+
 
     /**
      * Produces "2000/01"
@@ -137,10 +146,18 @@ public class DateUtils {
 
     /**
      * @param when The instant
-     * @return The instant formatted as "ddMMYY" (01092015)
+     * @return The instant formatted as "ddMMYYYY" (01092015)
      */
-    public static String formatDate(ReadableInstant when) {
+    public static String formatDate_ddMMYYYY(ReadableInstant when) {
         return cleanDateFormat.print(when);
+    }
+
+    /**
+     * @param when The instant
+     * @return The instant formatted as "ddMMYYYYHHmmss" (01092015121011)
+     */
+    public static String formatDate_ddMMYYYYHHmmss(ReadableInstant when) {
+        return cleanDateFormat2.print(when);
     }
 
     /**
