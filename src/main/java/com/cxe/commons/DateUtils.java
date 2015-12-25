@@ -1,5 +1,8 @@
 package com.cxe.commons;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.Locale;
 
@@ -158,6 +161,17 @@ public class DateUtils {
      */
     public static String formatDate_ddMMYYYYHHmmss(ReadableInstant when) {
         return cleanDateFormat2.print(when);
+    }
+
+    /**
+     * @param when The instant
+     * @return The instant formatted as "ddMMYYYYHHmmss" (01092015121011)
+     */
+    private static final String dateTimeFormatPattern = "ddMMyyyyHHmmss";
+    private static final DateFormat format = new SimpleDateFormat(dateTimeFormatPattern);
+
+    public static String formatDate_ddMMYYYYHHmmss(ZonedDateTime now) {
+        return format.format(now);
     }
 
     /**
