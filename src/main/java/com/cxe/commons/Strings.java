@@ -22,6 +22,7 @@ public class Strings {
     public static final String STARTING_ROUND = "(";
     public static final String ENDING_ROUND = ")";
     public static final String DOT = ".";
+    public static final int INDEX_NOT_FOUND = -1;
     //Patterns
     public static final String EMAIL_PATTERN
             = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -120,6 +121,81 @@ public class Strings {
             phone = phone.substring(plusIndex + 1);
         }
         return phone;
+    }
+
+    /**
+     * <p>Gets the substring before the first occurrence of a separator.
+     * The separator is not returned.</p>
+     * <p>
+     * <p>A <code>null</code> string input will return <code>null</code>.
+     * An empty ("") string input will return the empty string.
+     * A <code>null</code> separator will return the input string.</p>
+     * <p>
+     * <p>If nothing is found, the string input is returned.</p>
+     * <p>
+     * <pre>
+     * StringUtils.substringBefore(null, *)      = null
+     * StringUtils.substringBefore("", *)        = ""
+     * StringUtils.substringBefore("abc", "a")   = ""
+     * StringUtils.substringBefore("abcba", "b") = "a"
+     * StringUtils.substringBefore("abc", "c")   = "ab"
+     * StringUtils.substringBefore("abc", "d")   = "abc"
+     * StringUtils.substringBefore("abc", "")    = ""
+     * StringUtils.substringBefore("abc", null)  = "abc"
+     * </pre>
+     *
+     * @param str       the String to get a substring from, may be null
+     * @param separator the String to search for, may be null
+     * @return the substring before the first occurrence of the separator,
+     * <code>null</code> if null String input
+     */
+    public static String substringBefore(String str, String separator) {
+        if (isEmpty(str) || separator == null) {
+            return str;
+        }
+        if (separator.length() == 0) {
+            return EMPTY_STRING;
+        }
+        int pos = str.indexOf(separator);
+        if (pos == INDEX_NOT_FOUND) {
+            return str;
+        }
+        return str.substring(0, pos);
+    }
+
+    /**
+     * Gets the substring after the first occurrence of a separator. The separator is not returned.
+     * A null string input will return null. An empty ("") string input will return the empty string. A null separator will return the empty string if the input string is not null.
+     * If nothing is found, the empty string is returned.
+     * <p>
+     * <pre>
+     * StringUtils.substringAfter(null, *)      = null
+     * StringUtils.substringAfter("", *)        = ""
+     * StringUtils.substringAfter(*, null)      = ""
+     * StringUtils.substringAfter("abc", "a")   = "bc"
+     * StringUtils.substringAfter("abcba", "b") = "cba"
+     * StringUtils.substringAfter("abc", "c")   = ""
+     * StringUtils.substringAfter("abc", "d")   = ""
+     * StringUtils.substringAfter("abc", "")    = "abc"
+     * </pre>
+     *
+     * @param str       the String to get a substring from, may be null
+     * @param separator the String to search for, may be null
+     * @return the substring after the first occurrence of the separator,
+     * <code>null</code> if null String input
+     */
+    public static String substringAfter(String str, String separator) {
+        if (isEmpty(str)) {
+            return str;
+        }
+        if (separator == null) {
+            return EMPTY_STRING;
+        }
+        int pos = str.indexOf(separator);
+        if (pos == INDEX_NOT_FOUND) {
+            return EMPTY_STRING;
+        }
+        return str.substring(pos + separator.length());
     }
 
     /**
@@ -719,6 +795,7 @@ public class Strings {
 
     /**
      * PHP Style implode
+     *
      * @param seperator
      * @param array
      * @return
