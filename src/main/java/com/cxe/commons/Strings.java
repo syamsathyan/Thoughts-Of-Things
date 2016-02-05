@@ -22,6 +22,7 @@ public class Strings {
     public static final String STARTING_ROUND = "(";
     public static final String ENDING_ROUND = ")";
     public static final String DOT = ".";
+    public static final String HYPHEN = "-";
     public static final int INDEX_NOT_FOUND = -1;
     //Patterns
     public static final String EMAIL_PATTERN
@@ -70,7 +71,7 @@ public class Strings {
     }
 
     /**
-     * @param (eg:ss101y@att.com)
+     * @param ('ss101y@att.com')
      * @return S*****@att.com
      */
     public static String capitalizeFirstLetter(String variable) {
