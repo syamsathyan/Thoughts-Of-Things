@@ -203,19 +203,6 @@ public class StringsTest {
     }
 
     /**
-     * Test of join method, of class Strings.
-     */
-    @Test
-    public void testJoin_2args() {
-        System.out.println("join_2args");
-        String s1 = "a";
-        String s2 = "b";
-        String expResult = "ab";
-        String result = Strings.join(s1, s2);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of joinFast method, of class Strings.
      */
     @Test
@@ -232,33 +219,6 @@ public class StringsTest {
      * Test of joinFast method, of class Strings.
      */
     @Test
-    public void testJoinFast_2args_FAIL() {
-        System.out.println("joinFast_2args_FAIL");
-        String s1 = "a123";
-        String s2 = "b45";
-        String expResult = "a123b456";
-        String result = Strings.joinFast(s1, s2);
-        assertNotEquals(expResult, result);
-    }
-
-    /**
-     * Test of join method, of class Strings.
-     */
-    @Test
-    public void testJoin_3args() {
-        System.out.println("join_3args");
-        String s1 = "a";
-        String s2 = "b";
-        String s3 = "c";
-        String expResult = "abc";
-        String result = Strings.join(s1, s2, s3);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of joinFast method, of class Strings.
-     */
-    @Test
     public void testJoinFast_3args() {
         System.out.println("joinFast_3args");
         String s1 = "a123";
@@ -266,21 +226,6 @@ public class StringsTest {
         String s3 = "C";
         String expResult = "a123b456C";
         String result = Strings.joinFast(s1, s2, s3);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of join method, of class Strings.
-     */
-    @Test
-    public void testJoin_4args() {
-        System.out.println("join_4args");
-        String s1 = "a";
-        String s2 = "b";
-        String s3 = "c";
-        String s4 = "d";
-        String expResult = "abcd";
-        String result = Strings.join(s1, s2, s3, s4);
         assertEquals(expResult, result);
     }
 
@@ -303,22 +248,6 @@ public class StringsTest {
      * Test of join method, of class Strings.
      */
     @Test
-    public void testJoin_5args() {
-        System.out.println("join_5args");
-        String s1 = "a";
-        String s2 = "b";
-        String s3 = "c";
-        String s4 = "d";
-        String s5 = "e";
-        String expResult = "abcde";
-        String result = Strings.join(s1, s2, s3, s4, s5);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of join method, of class Strings.
-     */
-    @Test
     public void testJoinFast_5args() {
         System.out.println("joinFast_5args");
         String s1 = "a";
@@ -328,23 +257,6 @@ public class StringsTest {
         String s5 = "e";
         String expResult = "abcde";
         String result = Strings.joinFast(s1, s2, s3, s4, s5);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of join method, of class Strings.
-     */
-    @Test
-    public void testJoin_6args() {
-        System.out.println("join_6args");
-        String s1 = "a";
-        String s2 = "b";
-        String s3 = "c";
-        String s4 = "d";
-        String s5 = "e";
-        String s6 = "f";
-        String expResult = "abcdef";
-        String result = Strings.join(s1, s2, s3, s4, s5, s6);
         assertEquals(expResult, result);
     }
 
@@ -369,24 +281,6 @@ public class StringsTest {
      * Test of join method, of class Strings.
      */
     @Test
-    public void testJoin_7args() {
-        System.out.println("join_7args");
-        String s1 = "a";
-        String s2 = "b";
-        String s3 = "c";
-        String s4 = "d";
-        String s5 = "e";
-        String s6 = "f";
-        String s7 = "g";
-        String expResult = "abcdefg";
-        String result = Strings.join(s1, s2, s3, s4, s5, s6, s7);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of join method, of class Strings.
-     */
-    @Test
     public void testJoinFast_7args() {
         System.out.println("joinFast_7args");
         String s1 = "a";
@@ -398,25 +292,6 @@ public class StringsTest {
         String s7 = "g";
         String expResult = "abcdefg";
         String result = Strings.joinFast(s1, s2, s3, s4, s5, s6, s7);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of join method, of class Strings.
-     */
-    @Test
-    public void testJoin_8args() {
-        System.out.println("join_8args");
-        String s1 = "a";
-        String s2 = "b";
-        String s3 = "c";
-        String s4 = "d";
-        String s5 = "e";
-        String s6 = "f";
-        String s7 = "g";
-        String s8 = "h";
-        String expResult = "abcdefgh";
-        String result = Strings.join(s1, s2, s3, s4, s5, s6, s7, s8);
         assertEquals(expResult, result);
     }
 
@@ -582,10 +457,10 @@ public class StringsTest {
     @Test
     public void testImplode() {
         System.out.println("#### implode");
-        char seperator = '.';
+        String separator = ".";
         String[] array = {"A", "B", "C", "D"};
         String expResult = "A.B.C.D";
-        String result = Strings.implode(seperator, array);
+        String result = Strings.implode(separator, array);
         assertEquals(expResult, result);
         System.out.println(result);
     }

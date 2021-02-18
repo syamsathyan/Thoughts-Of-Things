@@ -3,6 +3,7 @@ package com.ve.cxe.commons;
 import java.text.Normalizer;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -76,7 +77,7 @@ public class Strings {
      */
     public static String capitalizeFirstLetter(String variable) {
         if (variable != null && variable.length() > 1) {
-            return Strings.joinFast(String.valueOf(Character.toUpperCase(variable.charAt(0))), variable.substring(1));
+            return String.valueOf(Character.toUpperCase(variable.charAt(0))).concat(variable.substring(1));
         } else {
             return variable;
         }
@@ -164,6 +165,14 @@ public class Strings {
         return str.substring(0, pos);
     }
 
+    public static final String joinFast(String... val) {
+        StringBuilder builder = new StringBuilder();
+        for (String i : val) {
+            builder.append(i);
+        }
+        return builder.toString();
+    }
+
     /**
      * Gets the substring after the first occurrence of a separator. The separator is not returned.
      * A null string input will return null. An empty ("") string input will return the empty string. A null separator will return the empty string if the input string is not null.
@@ -197,56 +206,6 @@ public class Strings {
             return EMPTY_STRING;
         }
         return str.substring(pos + separator.length());
-    }
-
-
-    /**
-     * <p>Compares two Strings, returning <code>true</code> if they are equal.</p>
-     * <p>
-     * <p><code>null</code>s are handled without exceptions. Two <code>null</code>
-     * references are considered to be equal. The comparison is case sensitive.</p>
-     * <p>
-     * <pre>
-     * StringUtils.equals(null, null)   = true
-     * StringUtils.equals(null, "abc")  = false
-     * StringUtils.equals("abc", null)  = false
-     * StringUtils.equals("abc", "abc") = true
-     * StringUtils.equals("abc", "ABC") = false
-     * </pre>
-     *
-     * @param str1 the first String, may be null
-     * @param str2 the second String, may be null
-     * @return <code>true</code> if the Strings are equal, case sensitive, or
-     * both <code>null</code>
-     * @see java.lang.String#equals(Object)
-     */
-    public static boolean equals(String str1, String str2) {
-        return str1 == null ? str2 == null : str1.equals(str2);
-    }
-
-    /**
-     * <p>Compares two Strings, returning <code>true</code> if they are equal ignoring
-     * the case.</p>
-     * <p>
-     * <p><code>null</code>s are handled without exceptions. Two <code>null</code>
-     * references are considered equal. Comparison is case insensitive.</p>
-     * <p>
-     * <pre>
-     * StringUtils.equalsIgnoreCase(null, null)   = true
-     * StringUtils.equalsIgnoreCase(null, "abc")  = false
-     * StringUtils.equalsIgnoreCase("abc", null)  = false
-     * StringUtils.equalsIgnoreCase("abc", "abc") = true
-     * StringUtils.equalsIgnoreCase("abc", "ABC") = true
-     * </pre>
-     *
-     * @param str1 the first String, may be null
-     * @param str2 the second String, may be null
-     * @return <code>true</code> if the Strings are equal, case insensitive, or
-     * both <code>null</code>
-     * @see java.lang.String#equalsIgnoreCase(String)
-     */
-    public static boolean equalsIgnoreCase(String str1, String str2) {
-        return str1 == null ? str2 == null : str1.equalsIgnoreCase(str2);
     }
 
     /**
@@ -285,7 +244,7 @@ public class Strings {
         }
 
         // two or more elements
-        FastStringBuilder buf = new FastStringBuilder(256); // Java default is 16, probably too small
+        StringBuilder buf = new StringBuilder(); // Java default is 16, probably too small
         if (first != null) {
             buf.append(first);
         }
@@ -300,452 +259,6 @@ public class Strings {
         return buf.toString();
     }
 
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @return
-     */
-    @Deprecated
-    public static final String join(String s1, String s2) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @return
-     */
-    public static final String joinFast(String s1, String s2) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int count = 0;
-        char value[] = new char[l1 + l2];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        return new String(value, 0, count);
-    }
-
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @return
-     */
-    @Deprecated
-    public static final String join(String s1, String s2, String s3) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2 + l3);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        builder.append(s3, l3);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @return
-     */
-    public static final String joinFast(String s1, String s2, String s3) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int count = 0;
-        char value[] = new char[l1 + l2 + l3];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        s3.getChars(0, l3, value, count);
-        count += l3;
-
-        return new String(value, 0, count);
-    }
-
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @return
-     */
-    @Deprecated
-    public static final String join(String s1, String s2, String s3, String s4) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2 + l3 + l4);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        builder.append(s3, l3);
-        builder.append(s4, l4);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @return
-     */
-    public static final String joinFast(String s1, String s2, String s3, String s4) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int count = 0;
-        char value[] = new char[l1 + l2 + l3 + l4];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        s3.getChars(0, l3, value, count);
-        count += l3;
-
-        s4.getChars(0, l4, value, count);
-        count += l4;
-
-        return new String(value, 0, count);
-    }
-
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @return
-     */
-    @Deprecated
-    public static final String join(String s1, String s2, String s3, String s4, String s5) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2 + l3 + l4 + l5);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        builder.append(s3, l3);
-        builder.append(s4, l4);
-        builder.append(s5, l5);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @return
-     */
-    public static final String joinFast(String s1, String s2, String s3, String s4, String s5) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int count = 0;
-        char value[] = new char[l1 + l2 + l3 + l4 + l5];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        s3.getChars(0, l3, value, count);
-        count += l3;
-
-        s4.getChars(0, l4, value, count);
-        count += l4;
-
-        s5.getChars(0, l5, value, count);
-        count += l5;
-
-        return new String(value, 0, count);
-    }
-
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @param s6
-     * @return combined
-     */
-    @Deprecated
-    public static final String join(String s1, String s2, String s3, String s4, String s5, String s6) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int l6 = s6.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2 + l3 + l4 + l5 + l6);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        builder.append(s3, l3);
-        builder.append(s4, l4);
-        builder.append(s5, l5);
-        builder.append(s6, l6);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @param s6
-     * @return combined
-     */
-    public static final String joinFast(String s1, String s2, String s3, String s4, String s5, String s6) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int l6 = s6.length();
-        int count = 0;
-        char value[] = new char[l1 + l2 + l3 + l4 + l5 + l6];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        s3.getChars(0, l3, value, count);
-        count += l3;
-
-        s4.getChars(0, l4, value, count);
-        count += l4;
-
-        s5.getChars(0, l5, value, count);
-        count += l5;
-
-        s6.getChars(0, l6, value, count);
-        count += l6;
-
-        return new String(value, 0, count);
-    }
-
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @param s6
-     * @param s7
-     * @return combined
-     */
-    @Deprecated
-    public static final String join(String s1, String s2, String s3, String s4, String s5, String s6, String s7) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int l6 = s6.length();
-        int l7 = s7.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2 + l3 + l4 + l5 + l6 + l7);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        builder.append(s3, l3);
-        builder.append(s4, l4);
-        builder.append(s5, l5);
-        builder.append(s6, l6);
-        builder.append(s7, l7);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @param s6
-     * @param s7
-     * @return combined
-     */
-    public static final String joinFast(String s1, String s2, String s3, String s4, String s5, String s6, String s7) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int l6 = s6.length();
-        int l7 = s7.length();
-        int count = 0;
-        char value[] = new char[l1 + l2 + l3 + l4 + l5 + l6 + l7];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        s3.getChars(0, l3, value, count);
-        count += l3;
-
-        s4.getChars(0, l4, value, count);
-        count += l4;
-
-        s5.getChars(0, l5, value, count);
-        count += l5;
-
-        s6.getChars(0, l6, value, count);
-        count += l6;
-
-        s7.getChars(0, l7, value, count);
-        count += l7;
-
-        return new String(value, 0, count);
-    }
-
-    /**
-     * No Null Check, This method creates a FixedFastStringBuilder with the
-     * combined length and appends the two strings and returns.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @param s6
-     * @param s7
-     * @param s8
-     * @return
-     */
-    public static final String join(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int l6 = s6.length();
-        int l7 = s7.length();
-        int l8 = s8.length();
-        FixedFastStringBuilder builder = new FixedFastStringBuilder(l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8);
-        builder.append(s1, l1);
-        builder.append(s2, l2);
-        builder.append(s3, l3);
-        builder.append(s4, l4);
-        builder.append(s5, l5);
-        builder.append(s6, l6);
-        builder.append(s7, l7);
-        builder.append(s8, l8);
-        return builder.toString();
-    }
-
-    /**
-     * No Null Check, This method creates manages appends using character array with combined length and hence light and fast.
-     *
-     * @param s1
-     * @param s2
-     * @param s3
-     * @param s4
-     * @param s5
-     * @param s6
-     * @param s7
-     * @param s8
-     * @return combined
-     */
-    public static final String joinFast(String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8) {
-        int l1 = s1.length();
-        int l2 = s2.length();
-        int l3 = s3.length();
-        int l4 = s4.length();
-        int l5 = s5.length();
-        int l6 = s6.length();
-        int l7 = s7.length();
-        int l8 = s8.length();
-        int count = 0;
-        char value[] = new char[l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8];
-
-        s1.getChars(0, l1, value, count);
-        count += l1;
-
-        s2.getChars(0, l2, value, count);
-        count += l2;
-
-        s3.getChars(0, l3, value, count);
-        count += l3;
-
-        s4.getChars(0, l4, value, count);
-        count += l4;
-
-        s5.getChars(0, l5, value, count);
-        count += l5;
-
-        s6.getChars(0, l6, value, count);
-        count += l6;
-
-        s7.getChars(0, l7, value, count);
-        count += l7;
-
-        s8.getChars(0, l8, value, count);
-        count += l8;
-
-        return new String(value, 0, count);
-    }
 
     public static final boolean isEmpty(String input) {
         return (input == null || input.isEmpty());
@@ -756,14 +269,8 @@ public class Strings {
     }
 
     public static final String joinFill(String string, String fillCharacter, int count) {
-        //Create the fill
-        int fillCharacterLength = fillCharacter.length();
-        char value[] = new char[fillCharacterLength * count];
-        for (int i = 0; i < count; i++) {
-            fillCharacter.getChars(0, fillCharacterLength, value, i);
-        }
-        String filled = new String(value, 0, count);
-        return joinFast(string, filled);
+        String filled = fill(fillCharacter, count);
+        return string.concat(filled);
     }
 
     /**
@@ -774,14 +281,11 @@ public class Strings {
      * @return
      */
     public static final String joinFill(String startString, String fillCharacter, int count, String endString) {
-        //Create the fill
-        int fillCharacterLength = fillCharacter.length();
-        char value[] = new char[fillCharacterLength * count];
-        for (int i = 0; i < count; i++) {
-            fillCharacter.getChars(0, fillCharacterLength, value, i);
-        }
-        String filled = new String(value, 0, count);
-        return joinFast(startString, filled, endString);
+        String filled = fill(fillCharacter, count);
+        StringBuilder builder = new StringBuilder(startString);
+        builder.append(filled);
+        builder.append(endString);
+        return builder.toString();
     }
 
     /**
@@ -793,13 +297,10 @@ public class Strings {
      */
     public static final String joinFill(String fillCharacter, int count, String endString) {
         //Create the fill
-        int fillCharacterLength = fillCharacter.length();
-        char value[] = new char[fillCharacterLength * count];
-        for (int i = 0; i < count; i++) {
-            fillCharacter.getChars(0, fillCharacterLength, value, i);
-        }
-        String filled = new String(value, 0, count);
-        return joinFast(filled, endString);
+        String filled = fill(fillCharacter, count);
+        StringBuilder builder = new StringBuilder(filled);
+        builder.append(endString);
+        return builder.toString();
     }
 
     /**
@@ -815,7 +316,10 @@ public class Strings {
     public static final String joinFill(String startString, String fillCharacter, char seperator, int count, String endString) {
         //Create the fill
         String filled = fill(fillCharacter, seperator, count);
-        return joinFast(startString, filled, endString);
+        StringBuilder builder = new StringBuilder(startString);
+        builder.append(filled);
+        builder.append(endString);
+        return builder.toString();
     }
 
     public static final String fill(String fillCharacter, char seperator, int count) {
@@ -851,12 +355,15 @@ public class Strings {
      * @param array
      * @return
      */
-    public static final String implode(char seperator, String array[]) {
-        FastStringBuilder builder = new FastStringBuilder();
-        for (String s : array) {
-            builder.append(s);
-            builder.append(seperator);
+    private static final Pattern SPACES_OR_EMPTY = Pattern.compile(" *");
+
+    public static String implode(String separator, String... data) {
+        StringJoiner sb = new StringJoiner(separator);
+        for (String token : data) {
+            if (!SPACES_OR_EMPTY.matcher(token).matches()) {
+                sb.add(token);
+            }
         }
-        return builder.toString(1);
+        return sb.toString();
     }
 }
