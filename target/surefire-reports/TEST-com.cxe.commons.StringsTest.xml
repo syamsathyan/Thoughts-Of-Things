@@ -1,91 +1,102 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="24" failures="0" name="com.cxe.commons.StringsTest" time="0.014" errors="0" skipped="0">
+<testsuite tests="35" failures="0" name="com.cxe.commons.StringsTest" time="0.036" errors="0" skipped="0">
   <properties>
-    <property name="idea.version" value="14.1.4"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib"/>
-    <property name="java.vm.version" value="25.40-b25"/>
+    <property name="java.vm.version" value="11.0.2+9-LTS"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib"/>
     <property name="gopherProxySet" value="false"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/sathyans/Documents/workspace/virtual/java/flywheel"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
-    <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=":"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="idea.launcher.port" value="7533"/>
+    <property name="sun.os.patch.level" value="unknown"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/Users/sathyasy/Documents/workspace/netbeans/vuoto/vcommons"/>
-    <property name="java.runtime.version" value="1.8.0_40-b25"/>
+    <property name="user.dir" value="/Users/sathyans/Documents/workspace/virtual/java/flywheel"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="java.runtime.version" value="11.0.2+9-LTS"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="java.io.tmpdir" value="/var/folders/kd/czkq_y1x3971zcwwkzzkknxr7dbqb7/T/"/>
+    <property name="java.io.tmpdir" value="/var/folders/dg/tggf_d6s0p57wnm8y6332bhjnz9xxs/T/"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Applications/IntelliJ IDEA 14.app/Contents/plugins/maven/lib/maven3/bin/m2.conf"/>
+    <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.6.2/libexec/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/sathyasy/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.library.path" value="/Users/sathyans/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="maven.conf" value="/usr/local/Cellar/maven/3.6.2/libexec/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="55.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.10.5"/>
+    <property name="os.version" value="10.14.5"/>
+    <property name="library.jansi.path" value="/usr/local/Cellar/maven/3.6.2/libexec/lib/jansi-native"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="user.home" value="/Users/sathyasy"/>
+    <property name="user.home" value="/Users/sathyans"/>
     <property name="user.timezone" value="America/New_York"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
-    <property name="java.specification.version" value="1.8"/>
-    <property name="idea.launcher.bin.path" value="/Applications/IntelliJ IDEA 14.app/Contents/bin"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="sathyasy"/>
-    <property name="java.class.path" value="/Applications/IntelliJ IDEA 14.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.4.jar:/Applications/IntelliJ IDEA 14.app/Contents/lib/idea_rt.jar"/>
-    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="user.name" value="sathyans"/>
+    <property name="java.class.path" value="/usr/local/Cellar/maven/3.6.2/libexec/boot/plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="com.intellij.rt.execution.application.AppMain org.codehaus.classworlds.Launcher -Didea.version=14.1.4 install"/>
-    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean test"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home"/>
     <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_40"/>
-    <property name="java.ext.dirs" value="/Users/sathyasy/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
-    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/classes"/>
+    <property name="java.version" value="11.0.2"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="/Applications/IntelliJ IDEA 14.app/Contents/plugins/maven/lib/maven3"/>
+    <property name="maven.home" value="/usr/local/Cellar/maven/3.6.2/libexec"/>
     <property name="file.separator" value="/"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
-    <property name="sun.cpu.endian" value="little"/>
+    <property name="java.version.date" value="2019-01-15"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="java.vendor.version" value="18.9"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.cxe.commons.StringsTest" name="testCapitalizeFirstLetter" time="0.001"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testIsAlphaNumeric" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testCapitalizeFirstLetter" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testIsAlphaNumeric" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testFill_3args_Multi" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testFill" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testToString" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testFill_Large" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFill" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testConcealEmail" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testRemoveSymbolIfExists" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_2args" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_3args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_3args" time="0.001"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_4args" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_5args" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_6args" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_7args" time="0.001"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_8args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_6args" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_7args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_8args" time="0.002"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testFill_3args_Single" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testConcealEmail_longEmail" time="0.002"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testValidateEmail" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_2args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_2args" time="0.002"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_3args" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_4args" time="0.001"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_5args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_5args" time="0.001"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_6args" time="0"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoin_7args" time="0.001"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_8args" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoin_8args" time="0.002"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testJoinFast_2args_FAIL" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testJoinFill_Seperator" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testConcealCharacters_Tail" time="0"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testConcealCharacters_Front" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testImplode" time="0.007"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testIsEmpty" time="0"/>
-  <testcase classname="com.cxe.commons.StringsTest" name="testToSlug" time="0.001"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testToSlug" time="0.012"/>
+  <testcase classname="com.cxe.commons.StringsTest" name="testConcealCharacters_Front_With_Mask" time="0.001"/>
   <testcase classname="com.cxe.commons.StringsTest" name="testIsEmpty_Fail" time="0"/>
 </testsuite>
