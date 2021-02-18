@@ -11,7 +11,7 @@ FlyWheel - IOT
 4. **ByteUtils** - General purpose utilities,Byte ~ Hex fast conversions etc.
 5. **Math** - General purpose Math functions for Geo roundups, Ordinals
 6. **HashUtils** - Hashing utils for conflict avoidance and consistent key building
-7. **Strings** - String manipulation that uses FixedFastStringBuilder, utilizes jvm string pool and provides fast light methods.
+7. **Strings** - Fast and light utility methods.
 8. **DateUtils** - Date/Time utilities
 9. **HttpHelper** - Old School fast connectors (no external http client dependency, tested only in server VM's)
 10. **FixedFastStringBuilder** - Non nonsense String builder with UTF-8 and append routines with lengh check excluded.
