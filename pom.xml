@@ -49,12 +49,12 @@
                     <configuration>
                         <rules>
                             <requireMavenVersion>
-                                <message>You are running an older version of Maven. Vuoto requires at least Maven 3.0
+                                <message>You are running an older version of Maven. Flywheel requires at least Maven 3.0
                                 </message>
                                 <version>[3.0.0,)</version>
                             </requireMavenVersion>
                             <requireJavaVersion>
-                                <message>You are running an older version of Java. Vuoto requires at least JDK
+                                <message>You are running an older version of Java. Flywheel requires at least JDK
                                     ${java.version}
                                 </message>
                                 <version>[${java.version}.0,)</version>
