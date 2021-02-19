@@ -15,6 +15,7 @@
  */
 package com.ve.cxe.commons;
 
+import com.ve.cxe.commons.util.ByteUtils;
 import org.junit.*;
 
 import static org.junit.Assert.*;

@@ -16,6 +16,7 @@
 package com.ve.cxe.commons;
 
 import com.ve.cxe.commons.io.LocalFileHelper;
+import com.ve.cxe.commons.util.StringUtils;
 import org.junit.*;
 
 import java.io.ByteArrayInputStream;
@@ -103,6 +104,6 @@ public class LocalFileHelperTest
     } catch ( IOException e ) {
       e.printStackTrace();
     }
-    assertTrue( !Strings.isEmpty( absolutePath ) );
+    assertTrue( !StringUtils.isEmpty( absolutePath ) );
   }
 }

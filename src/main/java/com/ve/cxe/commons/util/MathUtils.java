@@ -1,9 +1,9 @@
-package com.ve.cxe.commons;
+package com.ve.cxe.commons.util;
 
 /**
  * @author Syam Sathyan
  */
-public class Math {
+public class MathUtils {
 
     final static String[] sufixes = new String[]{"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"};
 

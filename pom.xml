@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ve.cxe</groupId>
     <artifactId>flywheel</artifactId>
-    <version>3.3</version>
+    <version>3.4</version>
     <packaging>jar</packaging>
     <name>flywheel-iot</name>
     <licenses>
@@ -49,11 +49,14 @@
                     <configuration>
                         <rules>
                             <requireMavenVersion>
-                                <message>You are running an older version of Maven. Vuoto requires at least Maven 3.0</message>
+                                <message>You are running an older version of Maven. Vuoto requires at least Maven 3.0
+                                </message>
                                 <version>[3.0.0,)</version>
                             </requireMavenVersion>
                             <requireJavaVersion>
-                                <message>You are running an older version of Java. Vuoto requires at least JDK ${java.version}</message>
+                                <message>You are running an older version of Java. Vuoto requires at least JDK
+                                    ${java.version}
+                                </message>
                                 <version>[${java.version}.0,)</version>
                             </requireJavaVersion>
                         </rules>

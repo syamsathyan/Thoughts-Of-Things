@@ -1,4 +1,4 @@
-package com.ve.cxe.commons;
+package com.ve.cxe.commons.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

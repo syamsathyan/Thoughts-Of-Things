@@ -1,9 +1,7 @@
-package com.ve.cxe.commons;
-
-import java.util.Random;
+package com.ve.cxe.commons.util;
 
 /**
- * @author Syam Sathyan
+ * @author SSG
  */
 public class HashUtils {
 

@@ -17,6 +17,7 @@ package com.ve.cxe.commons;
 
 import java.util.Iterator;
 
+import com.ve.cxe.commons.util.StringUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,9 +31,9 @@ import org.junit.Ignore;
 /**
  * @author sathyasy
  */
-public class StringsTest {
+public class StringUtilsTest {
 
-    public StringsTest() {
+    public StringUtilsTest() {
     }
 
     @BeforeClass
@@ -59,7 +60,7 @@ public class StringsTest {
         System.out.println("toSlug");
         String input = "test slug";
         String expResult = "test-slug";
-        String result = Strings.toSlug(input);
+        String result = StringUtils.toSlug(input);
         assertEquals(expResult, result);
     }
 
@@ -71,7 +72,7 @@ public class StringsTest {
         System.out.println("isAlphaNumeric");
         String string = "abc";
         boolean expResult = true;
-        boolean result = Strings.isAlphaNumeric(string);
+        boolean result = StringUtils.isAlphaNumeric(string);
         assertEquals(expResult, result);
     }
 
@@ -83,7 +84,7 @@ public class StringsTest {
         System.out.println("isNumeric");
         String string = "1";
         boolean expResult = true;
-        boolean result = Strings.isNumeric(string);
+        boolean result = StringUtils.isNumeric(string);
         assertEquals(expResult, result);
     }
 
@@ -95,7 +96,7 @@ public class StringsTest {
         System.out.println("validateEmail");
         String email = "shamz@vuotolabs.com";
         boolean expResult = true;
-        boolean result = Strings.validateEmail(email);
+        boolean result = StringUtils.validateEmail(email);
         assertEquals(expResult, result);
     }
 
@@ -107,7 +108,7 @@ public class StringsTest {
         System.out.println("capitalizeFirstLetter");
         String variable = "email";
         String expResult = "Email";
-        String result = Strings.capitalizeFirstLetter(variable);
+        String result = StringUtils.capitalizeFirstLetter(variable);
         assertEquals(expResult, result);
     }
 
@@ -119,7 +120,7 @@ public class StringsTest {
         System.out.println("concealEmail");
         String email = "shine@gmail.com";
         String expResult = "sxxxx@gmail.com";
-        String result = Strings.concealEmail(email, null);
+        String result = StringUtils.concealEmail(email, null);
         assertEquals(expResult, result);
     }
 
@@ -131,7 +132,7 @@ public class StringsTest {
         System.out.println("concealEmail_longEmail");
         String email = "shine.sathyan.jason@finmastersails.co.uk";
         String expResult = "sxxxxxxxxxxxxxxxxxx@finmastersails.co.uk";
-        String result = Strings.concealEmail(email, null);
+        String result = StringUtils.concealEmail(email, null);
         assertEquals(expResult, result);
     }
 
@@ -143,7 +144,7 @@ public class StringsTest {
         System.out.println("#### ConcealCharacters_Tail");
         String email = "U0001055UN6TYI";
         String expResult = "U0001055xxxxxx";
-        String result = Strings.concealCharacters(email, 6, true, null);
+        String result = StringUtils.concealCharacters(email, 6, true, null);
         System.out.println(result);
         assertEquals(expResult, result);
     }
@@ -156,7 +157,7 @@ public class StringsTest {
         System.out.println("#### ConcealCharacters_Front");
         String email = "U0001055UN6TYI";
         String expResult = "xxxxxx55UN6TYI";
-        String result = Strings.concealCharacters(email, 6, false, null);
+        String result = StringUtils.concealCharacters(email, 6, false, null);
         System.out.println(result);
         assertEquals(expResult, result);
     }
@@ -169,7 +170,7 @@ public class StringsTest {
         System.out.println("#### ConcealCharacters_Front_with_Mask");
         String email = "U0001055UN6TYI";
         String expResult = "XXXXXX55UN6TYI";
-        String result = Strings.concealCharacters(email, 6, false, "X");
+        String result = StringUtils.concealCharacters(email, 6, false, "X");
         System.out.println(result);
         assertEquals(expResult, result);
     }
@@ -183,7 +184,7 @@ public class StringsTest {
         String symbol = "+";
         String phone = "+4046626413";
         String expResult = "4046626413";
-        String result = Strings.removeSymbolIfExists(symbol, phone);
+        String result = StringUtils.removeSymbolIfExists(symbol, phone);
         assertEquals(expResult, result);
     }
 
@@ -196,7 +197,7 @@ public class StringsTest {
         Iterator iterator = null;
         String separator = "";
         String expResult = "";
-        String result = Strings.join(iterator, separator);
+        String result = StringUtils.join(iterator, separator);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -211,7 +212,7 @@ public class StringsTest {
         String s1 = "a123";
         String s2 = "b456";
         String expResult = "a123b456";
-        String result = Strings.joinFast(s1, s2);
+        String result = StringUtils.joinFast(s1, s2);
         assertEquals(expResult, result);
     }
 
@@ -225,7 +226,7 @@ public class StringsTest {
         String s2 = "b456";
         String s3 = "C";
         String expResult = "a123b456C";
-        String result = Strings.joinFast(s1, s2, s3);
+        String result = StringUtils.joinFast(s1, s2, s3);
         assertEquals(expResult, result);
     }
 
@@ -240,7 +241,7 @@ public class StringsTest {
         String s3 = "c";
         String s4 = "d";
         String expResult = "abcd";
-        String result = Strings.joinFast(s1, s2, s3, s4);
+        String result = StringUtils.joinFast(s1, s2, s3, s4);
         assertEquals(expResult, result);
     }
 
@@ -256,7 +257,7 @@ public class StringsTest {
         String s4 = "d";
         String s5 = "e";
         String expResult = "abcde";
-        String result = Strings.joinFast(s1, s2, s3, s4, s5);
+        String result = StringUtils.joinFast(s1, s2, s3, s4, s5);
         assertEquals(expResult, result);
     }
 
@@ -273,7 +274,7 @@ public class StringsTest {
         String s5 = "e";
         String s6 = "f";
         String expResult = "abcdef";
-        String result = Strings.joinFast(s1, s2, s3, s4, s5, s6);
+        String result = StringUtils.joinFast(s1, s2, s3, s4, s5, s6);
         assertEquals(expResult, result);
     }
 
@@ -291,7 +292,7 @@ public class StringsTest {
         String s6 = "f";
         String s7 = "g";
         String expResult = "abcdefg";
-        String result = Strings.joinFast(s1, s2, s3, s4, s5, s6, s7);
+        String result = StringUtils.joinFast(s1, s2, s3, s4, s5, s6, s7);
         assertEquals(expResult, result);
     }
 
@@ -310,7 +311,7 @@ public class StringsTest {
         String s7 = "g";
         String s8 = "h";
         String expResult = "abcdefgh";
-        String result = Strings.joinFast(s1, s2, s3, s4, s5, s6, s7, s8);
+        String result = StringUtils.joinFast(s1, s2, s3, s4, s5, s6, s7, s8);
         assertEquals(expResult, result);
     }
 
@@ -322,7 +323,7 @@ public class StringsTest {
         System.out.println("isEmpty");
         String input = "";
         boolean expResult = true;
-        boolean result = Strings.isEmpty(input);
+        boolean result = StringUtils.isEmpty(input);
         assertEquals(expResult, result);
     }
 
@@ -334,7 +335,7 @@ public class StringsTest {
         System.out.println("isEmpty fail");
         String input = "a";
         boolean expResult = true;
-        boolean result = Strings.isEmpty(input);
+        boolean result = StringUtils.isEmpty(input);
         assertNotEquals(expResult, result);
     }
 
@@ -346,7 +347,7 @@ public class StringsTest {
         System.out.println("toString");
         Object obj = "Sim";
         String expResult = "Sim";
-        String result = Strings.toString(obj);
+        String result = StringUtils.toString(obj);
         assertEquals(expResult, result);
     }
 
@@ -360,7 +361,7 @@ public class StringsTest {
         String fillCharacter = "";
         int count = 0;
         String expResult = "";
-        String result = Strings.joinFill(string, fillCharacter, count);
+        String result = StringUtils.joinFill(string, fillCharacter, count);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -378,7 +379,7 @@ public class StringsTest {
         int count = 2;
         String endString = "";
         String expResult = "Saramma-X,X";
-        String result = Strings.joinFill(startString, fillCharacter, seperator, count, endString);
+        String result = StringUtils.joinFill(startString, fillCharacter, seperator, count, endString);
         assertEquals(expResult, result);
     }
 
@@ -393,7 +394,7 @@ public class StringsTest {
         int count = 1;
         String endString = "Sathyadas";
         String expResult = "Saramma.Sathyadas";
-        String result = Strings.joinFill(startString, fillCharacter, count, endString);
+        String result = StringUtils.joinFill(startString, fillCharacter, count, endString);
         assertEquals(expResult, result);
     }
 
@@ -407,7 +408,7 @@ public class StringsTest {
         char seperator = ',';
         int count = 1;
         String expResult = "a";
-        String result = Strings.fill(fillCharacter, seperator, count);
+        String result = StringUtils.fill(fillCharacter, seperator, count);
         assertEquals(expResult, result);
     }
 
@@ -421,7 +422,7 @@ public class StringsTest {
         char seperator = ',';
         int count = 2;
         String expResult = "a,a";
-        String result = Strings.fill(fillCharacter, seperator, count);
+        String result = StringUtils.fill(fillCharacter, seperator, count);
         assertEquals(expResult, result);
     }
 
@@ -434,7 +435,7 @@ public class StringsTest {
         String fillCharacter = "X";
         int count = 3;
         String expResult = "XXX";
-        String result = Strings.fill(fillCharacter, count);
+        String result = StringUtils.fill(fillCharacter, count);
         assertEquals(expResult, result);
     }
 
@@ -446,7 +447,7 @@ public class StringsTest {
         System.out.println("#### fill Large Case");
         String fillCharacter = "X";
         int count = 100;
-        String result = Strings.fill(fillCharacter, count);
+        String result = StringUtils.fill(fillCharacter, count);
         assertEquals(result.length(), 100);
         System.out.println(result);
     }
@@ -460,7 +461,7 @@ public class StringsTest {
         String separator = ".";
         String[] array = {"A", "B", "C", "D"};
         String expResult = "A.B.C.D";
-        String result = Strings.implode(separator, array);
+        String result = StringUtils.implode(separator, array);
         assertEquals(expResult, result);
         System.out.println(result);
     }

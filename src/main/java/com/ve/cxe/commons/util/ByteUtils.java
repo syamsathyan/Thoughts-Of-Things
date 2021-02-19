@@ -1,9 +1,9 @@
-package com.ve.cxe.commons;
+package com.ve.cxe.commons.util;
 
 import java.util.Random;
 
 /**
- * @author Syam Sathyan
+ * @author SSG
  */
 public class ByteUtils {
 

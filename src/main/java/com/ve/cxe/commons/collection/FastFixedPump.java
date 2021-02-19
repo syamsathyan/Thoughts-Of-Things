@@ -1,6 +1,6 @@
 package com.ve.cxe.commons.collection;
 
-import com.ve.cxe.commons.Strings;
+import com.ve.cxe.commons.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -209,7 +209,7 @@ public class FastFixedPump<V> implements Collection<V> {
 
     @Override
     public String toString() {
-        return Strings.joinFast("FastFixedPump[Size:", String.valueOf(current), ", Capacity:", String.valueOf(values.length), "]");
+        return StringUtils.joinFast("FastFixedPump[Size:", String.valueOf(current), ", Capacity:", String.valueOf(values.length), "]");
     }
 
     private static final int hash(Object key) {

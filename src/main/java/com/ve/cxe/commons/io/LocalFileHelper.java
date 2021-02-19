@@ -1,8 +1,8 @@
 package com.ve.cxe.commons.io;
 
-import com.ve.cxe.commons.BaseGUIDGenerator;
-import com.ve.cxe.commons.DateUtils;
-import com.ve.cxe.commons.Strings;
+import com.ve.cxe.commons.util.BaseGUIDGenerator;
+import com.ve.cxe.commons.util.DateUtils;
+import com.ve.cxe.commons.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +26,7 @@ public class LocalFileHelper
   public static Path createYearMonth_Base62Path( String basepath, int guidLength, String fileSeperator, String extension )
   {
     String fileName = BaseGUIDGenerator.GetBase62( guidLength );
-    String justFilePath = Strings.joinFast( basepath, fileSeperator, DateUtils.getFilePathStyle_YearMonthNow(), fileSeperator, fileName, extension );
+    String justFilePath = StringUtils.joinFast( basepath, fileSeperator, DateUtils.getFilePathStyle_YearMonthNow(), fileSeperator, fileName, extension );
     return Paths.get( justFilePath ); // return absolute path
   }
 
@@ -39,7 +39,7 @@ public class LocalFileHelper
   public static Path createYearMonthDay_Base62Path( String basepath, int guidLength, String fileSeperator, String extension )
   {
     String fileName = BaseGUIDGenerator.GetBase62( guidLength );
-    String justFilePath = Strings.joinFast( basepath, fileSeperator, DateUtils.getFilePathStyle_YearMonthDayNow(), fileSeperator, fileName, extension );
+    String justFilePath = StringUtils.joinFast( basepath, fileSeperator, DateUtils.getFilePathStyle_YearMonthDayNow(), fileSeperator, fileName, extension );
     return Paths.get( justFilePath ); // return absolute path
   }
 

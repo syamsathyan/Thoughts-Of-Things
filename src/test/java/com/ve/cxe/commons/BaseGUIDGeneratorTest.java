@@ -15,6 +15,7 @@
  */
 package com.ve.cxe.commons;
 
+import com.ve.cxe.commons.util.BaseGUIDGenerator;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -37,7 +38,7 @@ public class BaseGUIDGeneratorTest {
 
     @Before
     public void setUp() {
-        BaseGUIDGenerator.demo(5, 6);
+        BaseGUIDGenerator.test(5, 6);
     }
 
     @After

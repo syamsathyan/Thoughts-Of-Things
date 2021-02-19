@@ -16,6 +16,7 @@
 package com.ve.cxe.commons;
 
 import com.ve.cxe.commons.http.HttpHelper;
+import com.ve.cxe.commons.util.StringUtils;
 import org.junit.*;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class HttpHelperTest {
             reponse = null;
             e.printStackTrace();
         }
-        assertTrue(!Strings.isEmpty(reponse));
+        assertTrue(!StringUtils.isEmpty(reponse));
     }
 
 }

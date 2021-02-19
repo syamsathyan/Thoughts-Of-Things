@@ -1,6 +1,6 @@
 package com.ve.cxe.commons.ai;
 
-import com.ve.cxe.commons.Strings;
+import com.ve.cxe.commons.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +62,7 @@ public class Thought implements Comparable {
 
         @Override
         public String toString() {
-            return Strings.joinFast("[relation:", relation, ",", this.thought.toString(), "]");
+            return StringUtils.joinFast("[relation:", relation, ",", this.thought.toString(), "]");
             //return Strings.joinFast("[Relation:", relation);
         }
 
@@ -77,7 +77,7 @@ public class Thought implements Comparable {
             return Strings.joinFast("[thought:", thought, ",rank:", String.valueOf(rank), "]");
         }
         */
-        return Strings.joinFast("[thought:", thought, "]");
+        return StringUtils.joinFast("[thought:", thought, "]");
     }
 
     public String getThought() {

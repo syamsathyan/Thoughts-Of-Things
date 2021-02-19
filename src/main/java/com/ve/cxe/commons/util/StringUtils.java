@@ -1,4 +1,4 @@
-package com.ve.cxe.commons;
+package com.ve.cxe.commons.util;
 
 import java.text.Normalizer;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * @author /Syam Sathyan
  */
-public class Strings {
+public class StringUtils {
 
     public static final String FILE_SEPERATOR;
     public static final String EMPTY_STRING = "";
@@ -92,7 +92,7 @@ public class Strings {
         int length = email.length();
         //Find the remaining after @
         //email.substring(indexAt);
-        return Strings.joinFill(String.valueOf(email.charAt(0)), mask == null ? "x" : mask, indexAt - 1, email.substring(indexAt, length));
+        return StringUtils.joinFill(String.valueOf(email.charAt(0)), mask == null ? "x" : mask, indexAt - 1, email.substring(indexAt, length));
     }
 
     /**
@@ -103,10 +103,10 @@ public class Strings {
         if (tailMode) {
             int index = content.length() - concealCount;
             String conceal = content.substring(index, content.length());
-            return Strings.joinFill(content.substring(0, index), mask == null ? "x" : mask, conceal.length());
+            return StringUtils.joinFill(content.substring(0, index), mask == null ? "x" : mask, conceal.length());
         } else {
             String pre = content.substring(0, concealCount);
-            return Strings.joinFill(mask == null ? "x" : mask, pre.length(), content.substring(concealCount, content.length()));
+            return StringUtils.joinFill(mask == null ? "x" : mask, pre.length(), content.substring(concealCount, content.length()));
         }
     }
 
