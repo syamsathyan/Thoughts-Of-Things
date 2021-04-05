@@ -44,7 +44,6 @@ FastFixedList
 ###### Sequential Add (100000000 items) - Comparing with ArrayList ######
     1. Time Taken by FastFixedList(s):2.669169074
     2. Time Taken by ArrayList(s):Unknown due to OOM
-    java.lang.OutOfMemoryError: Java heap space
     
 Sattolo Shuffle
 ------------
