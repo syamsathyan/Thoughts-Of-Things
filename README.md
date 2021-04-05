@@ -19,7 +19,7 @@ FlyWheel - IOT
 12. **StreamHelper** - IO Stream helper methods.
 13. **SystemCommandExecutor** - Command executor with process support, interrupt handling, streaming io etc
 14. **FixedFastSet** - Set implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with HashSet
-15. **FixedFastList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
+15. **FastFixedList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
 
 Tests
 =====
@@ -34,12 +34,17 @@ FixedFastSet
     2. Time Taken by HashSet(s):0.010048395
     HashSet took :0.002887026 seconds more than FixedFastSet
 
-FixedFastList
+FastFixedList
 ------------
 ###### Sequential Add (10000000 items) - Comparing with ArrayList ######
     1. Time Taken by FastFixedList(s):2.217606438
     2. Time Taken by ArrayList(s):3.007124955
     ArrayList took :0.7895185170000003 seconds more than FixedFastList
+    
+###### Sequential Add (100000000 items) - Comparing with ArrayList ######
+    1. Time Taken by FastFixedList(s):2.669169074
+    2. Time Taken by ArrayList(s):Unknown due to OOM
+    java.lang.OutOfMemoryError: Java heap space
     
 Sattolo Shuffle
 ------------
