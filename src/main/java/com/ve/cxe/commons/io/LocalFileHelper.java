@@ -26,7 +26,7 @@ public class LocalFileHelper
   public static Path createYearMonth_Base62Path( String basepath, int guidLength, String fileSeperator, String extension )
   {
     String fileName = BaseGUIDGenerator.GetBase62( guidLength );
-    String justFilePath = StringUtils.joinFast( basepath, fileSeperator, DateUtils.getFilePathStyle_YearMonthNow(), fileSeperator, fileName, extension );
+    String justFilePath = StringUtils.joinFast( basepath, fileSeperator, DateUtils.getCurrentYearMonth(), fileSeperator, fileName, extension );
     return Paths.get( justFilePath ); // return absolute path
   }
 
@@ -39,7 +39,7 @@ public class LocalFileHelper
   public static Path createYearMonthDay_Base62Path( String basepath, int guidLength, String fileSeperator, String extension )
   {
     String fileName = BaseGUIDGenerator.GetBase62( guidLength );
-    String justFilePath = StringUtils.joinFast( basepath, fileSeperator, DateUtils.getFilePathStyle_YearMonthDayNow(), fileSeperator, fileName, extension );
+    String justFilePath = StringUtils.joinFast( basepath, fileSeperator, DateUtils.getCurrentYearMonthDay(), fileSeperator, fileName, extension );
     return Paths.get( justFilePath ); // return absolute path
   }
 

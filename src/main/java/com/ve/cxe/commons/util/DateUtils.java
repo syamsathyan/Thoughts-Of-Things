@@ -11,12 +11,6 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * <p>
- * Utility to provide the following to all layers:</p>
- * <ul>
- * <li>Provision of standard Joda time formatters and parsers</li>
- * </ul>
- * <p>
  * All times use the UTC time zone unless otherwise specified</p>
  *
  * @since 0.0.1
@@ -29,21 +23,21 @@ public class DateUtils {
      */
     static DateTimeFormatter dateTimeFormatPattern = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
 
-    public static String formatDate_ddMMYYYYHHmmss(ZonedDateTime now) {
+    public static String getCurrent_ddMMYYYYHHmmss(ZonedDateTime now) {
         return now.format(dateTimeFormatPattern);
     }
 
 
     /**
-     * @param LocalDate
+     * @param birthDay
      * @return age in years
      */
     public static int getAge(LocalDate birthDay) {
         return LocalDate.now().getYear() - birthDay.getYear();
     }
 
-    public static long getHoursElapsed(LocalDateTime fromDate) {
-        return fromDate.until(LocalDateTime.now(), ChronoUnit.HOURS);
+    public static long getElapsed(LocalDateTime fromDate, ChronoUnit chronoUnit) {
+        return fromDate.until(LocalDateTime.now(), chronoUnit);
     }
 
     /**
@@ -51,7 +45,7 @@ public class DateUtils {
      */
     static DateTimeFormatter formatYearMonth = DateTimeFormatter.ofPattern("yyyy/MM");
 
-    public static String getFilePathStyle_YearMonthNow() {
+    public static String getCurrentYearMonth() {
         LocalDate now = LocalDate.now();
         return now.format(formatYearMonth);
     }
@@ -61,7 +55,7 @@ public class DateUtils {
      */
     static DateTimeFormatter formatYearMonthDay = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-    public static String getFilePathStyle_YearMonthDayNow() {
+    public static String getCurrentYearMonthDay() {
         return LocalDate.now().format(formatYearMonthDay);
     }
 

@@ -39,18 +39,18 @@ package com.ve.cxe.commons.shuffle;
 import java.util.Arrays;
 
 /**
- *  The <tt>Sattolo</tt> class provides a client for reading in a
- *  sequence of <em>N</em> strings and computing a <em>unifomly random cycle</em>
- *  if length <em>N</em> using the Sattolo's algorithm.
- *  This algorithm guarantees to produce a unifomly random cycle under
- *  the assumption that Math.random() generates independent and
- *  uniformly distributed numbers between 0 and 1.
- *  <p>
- *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/11model">Section 1.1</a> of
- *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ * The <tt>Sattolo</tt> class provides a client for reading in a
+ * sequence of <em>N</em> strings and computing a <em>unifomly random cycle</em>
+ * if length <em>N</em> using the Sattolo's algorithm.
+ * This algorithm guarantees to produce a unifomly random cycle under
+ * the assumption that Math.random() generates independent and
+ * uniformly distributed numbers between 0 and 1.
+ * <p>
+ * For additional documentation, see <a href="http://algs4.cs.princeton.edu/11model">Section 1.1</a> of
+ * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
  */
 public class Sattolo {
 
@@ -62,6 +62,7 @@ public class Sattolo {
      * Rearranges an array of objects to be a uniformly random cycle
      * (under the assumption that <tt>Math.random()</tt> generates independent
      * and uniformly distributed numbers between 0 and 1).
+     *
      * @param a the array to be rearranged
      */
     public static void cycle(Object[] a) {
@@ -73,20 +74,5 @@ public class Sattolo {
             a[r] = a[i - 1];
             a[i - 1] = swap;
         }
-    }
-
-    /**
-     * Reads in a sequence of strings from standard input, shuffles
-     * them, and prints out the results.
-     */
-    public static void main(String[] args) {
-
-        // read in the data
-        String[] a = {"S", "O", "Y", "A"};
-
-        // shuffle the array
-        Sattolo.cycle(a);
-
-        System.out.println("Shuffled Outputs:" + Arrays.toString(a));
     }
 }
