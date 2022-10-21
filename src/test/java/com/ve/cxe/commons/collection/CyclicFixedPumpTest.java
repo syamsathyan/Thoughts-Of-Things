@@ -69,7 +69,7 @@ public class CyclicFixedPumpTest {
         CyclicFixedPump fastFixedPump = new CyclicFixedPump(count, 1);
         fastFixedPump.add("V");
         fastFixedPump.add("S");
-        //Now theretically Evicts V and has X instead
+        //Now theoretically Evicts V and has X instead
         fastFixedPump.add("X");
         assertTrue(fastFixedPump.size() == count); // Regardless of the fact that we added 3 items;
         Object[] pumped1 = new Object[1];
@@ -81,9 +81,9 @@ public class CyclicFixedPumpTest {
 
         System.out.println("LastDrop: " + Arrays.toString(fastFixedPump.lastDrop()));
         System.out.println("To Array: " + Arrays.toString(fastFixedPump.toArray()));
-        System.out.println("Pump Again: " + Arrays.toString(fastFixedPump.pump()));
-        System.out.println("LastDrop Again: " + Arrays.toString(fastFixedPump.lastDrop()));
-        System.out.println("To Array Again: " + Arrays.toString(fastFixedPump.toArray()));
+        System.out.println("Pump: " + Arrays.toString(fastFixedPump.pump()));
+        System.out.println("LastDrop: " + Arrays.toString(fastFixedPump.lastDrop()));
+        System.out.println("To Array: " + Arrays.toString(fastFixedPump.toArray()));
     }
 
 
