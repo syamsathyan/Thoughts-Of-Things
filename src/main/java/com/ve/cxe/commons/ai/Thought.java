@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by sathyasy on 9/28/15.
+ * Created by SSG on 9/28/15.
  */
 public class Thought implements Comparable {
 
@@ -29,7 +29,7 @@ public class Thought implements Comparable {
      * @param thoughtStream
      * @param index
      */
-    public boolean addRelation(String thought, String thoughtStream[], int index) {
+    public boolean linkThought(String thought, String thoughtStream[], int index) {
         Thought childThought;
         String relation;
         boolean backPressure = false;
@@ -49,23 +49,6 @@ public class Thought implements Comparable {
         children.put(relation, r);
 
         return backPressure;
-    }
-
-    public class Relation {
-        String relation;
-        Thought thought;
-
-        public Relation(String relation, Thought thought) {
-            this.relation = relation;
-            this.thought = thought;
-        }
-
-        @Override
-        public String toString() {
-            return StringUtils.joinFast("[relation:", relation, ",", this.thought.toString(), "]");
-            //return Strings.joinFast("[Relation:", relation);
-        }
-
     }
 
     @Override

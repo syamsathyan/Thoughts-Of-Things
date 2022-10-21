@@ -42,7 +42,7 @@ public class ThoughtFactory {
                 Thought parent = findContextRoot(thoughtStream, i);
                 if (parent != null) {
                     //Prevent NPE
-                    backPressure = parent.addRelation(thought, thoughtStream, i);
+                    backPressure = parent.linkThought(thought, thoughtStream, i);
                     //Process Back-Pressure
                     if (backPressure) {
                         i++;
@@ -57,7 +57,7 @@ public class ThoughtFactory {
                     Thought t = new Thought(thought);
                     thoughts.put(thought, t);
                 } else {
-                    backPressure = parent.addRelation(thought, thoughtStream, i);
+                    backPressure = parent.linkThought(thought, thoughtStream, i);
                     //Process Back-Pressure
                     if (backPressure) {
                         i++;
