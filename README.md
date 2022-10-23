@@ -1,8 +1,8 @@
-FlyWheel - IOT
+SIGNAL - IOT
 ===================
 #### A set of commonly used highly optimized routines, classes and functions.
 > Born out of our experiment's in IOT  
-> Mostly old school libs transitioning to IOT and DataScience labs
+> Mostly old school libs rewritten for IOT and DataScience labs with a prioritization on lightweight alternatives
 
 1. **FastFixedPump** - Fast Collection with ability to pump out (evict) fixed number of elements per access, threads safe and implemented for an IOT application where sensory data eviction required at periodic intervals as fixed parts
 2. **CyclicFixedPump** - Fast Collection with ability to pump (cycle) without emptying the contents
@@ -20,7 +20,7 @@ FlyWheel - IOT
 14. **FixedFastSet** - Set implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with HashSet
 15. **FastFixedList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
 
-Tests
+Test Results
 =====
 FixedFastSet
 ------------
