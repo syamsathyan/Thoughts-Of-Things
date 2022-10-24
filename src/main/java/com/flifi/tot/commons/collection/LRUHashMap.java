@@ -10,8 +10,10 @@ class LruMapEntry {
 }
 
 public class LRUHashMap extends HashMap {
+
     LruMapEntry start, end;
-    int LRU_SIZE = 4; // Here i am setting 4 to test the LRU cache
+    private static final int DEFAULT_LRU_SIZE = 4;
+    int LRU_SIZE = DEFAULT_LRU_SIZE;
 
     public LRUHashMap(int size) {
         super(size);
@@ -46,7 +48,7 @@ public class LRUHashMap extends HashMap {
             newnode.right = null;
             newnode.value = value;
             newnode.key = key;
-            if (super.size() > LRU_SIZE) // We have reached maxium size so need to make room for new element.
+            if (super.size() > LRU_SIZE) // We have reached maximum size so need to make room for new element.
             {
                 super.remove(end.key);
                 removeNode(end);
