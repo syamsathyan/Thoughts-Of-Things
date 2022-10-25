@@ -44,9 +44,6 @@ public class HashUtilsTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of toSlug method, of class Strings.
-     */
     @Test
     public void testHash_Unique_For_Different_Objects() {
         System.out.println("#### testHash_Unique_For_Different_Objects ####");

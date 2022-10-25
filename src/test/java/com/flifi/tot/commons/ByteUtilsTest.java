@@ -21,7 +21,6 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author sathyasy
  */
 public class ByteUtilsTest {
@@ -45,9 +44,6 @@ public class ByteUtilsTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of toSlug method, of class Strings.
-     */
     @Test
     public void testbytesToHexAndReverse() {
         System.out.println("bytesToHex");
@@ -56,7 +52,7 @@ public class ByteUtilsTest {
 
         byte[] inputBytes = ByteUtils.hexToBytes(inputHex);
 
-        assertTrue(ByteUtils.fullByteCompare(input,inputBytes));
+        assertTrue(ByteUtils.fullByteCompare(input, inputBytes));
     }
 
 }
