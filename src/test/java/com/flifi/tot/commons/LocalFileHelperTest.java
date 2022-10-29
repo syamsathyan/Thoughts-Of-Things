@@ -34,76 +34,68 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author sathyasy
  */
-public class LocalFileHelperTest
-{
+public class LocalFileHelperTest {
 
-  public LocalFileHelperTest()
-  {
-  }
-
-  @BeforeClass
-  public static void setUpClass()
-  {
-  }
-
-  @AfterClass
-  public static void tearDownClass()
-  {
-  }
-
-  @Before
-  public void setUp()
-  {
-  }
-
-  @After
-  public void tearDown()
-  {
-  }
-
-  @Test
-  public void testSaveFile_YearMonth_Base62()
-  {
-    System.out.println( "------ SaveFile_Base62 ----" );
-    String basePath = Paths.get( "." ).toAbsolutePath().normalize().toString();
-    System.out.println( "Base Path: " + basePath );
-    Path path = LocalFileHelper.createYearMonth_Base62Path( basePath, 6, "/", ".txt" );
-
-    String exampleString = "Test Syam";
-    InputStream stream = new ByteArrayInputStream( exampleString.getBytes( StandardCharsets.UTF_8 ) );
-
-    long size = 0;
-    try {
-      size = LocalFileHelper.saveFile( stream, path );
-      System.out.println( "File Created Size: " + size );
-    } catch ( AccessDeniedException exception ) {
-      System.out.println( "File Creation Denied by OS" );
-    } catch ( IOException e ) {
-      e.printStackTrace();
+    public LocalFileHelperTest() {
     }
-    assertTrue( size > 0 );
-  }
 
-  @Test
-  public void testSaveFile2_YearMonthDay_Base62()
-  {
-    System.out.println( "------ SaveFile2_Base62 ----" );
-    String basePath = Paths.get( "." ).toAbsolutePath().normalize().toString();
-    System.out.println( "Base Path: " + basePath );
-    Path path = LocalFileHelper.createYearMonthDay_Base62Path( basePath, 6, "/", ".txt" );
-
-    String exampleString = "Test Syam";
-    InputStream stream = new ByteArrayInputStream( exampleString.getBytes( StandardCharsets.UTF_8 ) );
-
-    String absolutePath = null;
-    try {
-      absolutePath = LocalFileHelper.saveFile2( stream, path );
-      System.out.println( "File Created in: " + absolutePath );
-    } catch ( AccessDeniedException exception ) {
-      System.out.println( "File Creation Denied by OS" );
-    } catch ( IOException e ) {
-      e.printStackTrace();
+    @BeforeClass
+    public static void setUpClass() {
     }
-    assertTrue( !StringUtils.isEmpty( absolutePath ) );
-  }
+
+    @AfterClass
+    public static void tearDownClass() {
+    }
+
+    @Before
+    public void setUp() {
+    }
+
+    @After
+    public void tearDown() {
+    }
+
+    @Test
+    public void testSaveFile_YearMonth_Base62() {
+        System.out.println("------ SaveFile_Base62 ----");
+        String basePath = Paths.get(".").toAbsolutePath().normalize().toString();
+        System.out.println("Base Path: " + basePath);
+        Path path = LocalFileHelper.createYearMonth_Base62Path(basePath, 6, ".txt");
+
+        String exampleString = "Test Syam";
+        InputStream stream = new ByteArrayInputStream(exampleString.getBytes(StandardCharsets.UTF_8));
+
+        long size = 0;
+        try {
+            size = LocalFileHelper.saveFile(stream, path);
+            System.out.println("File Created Size: " + size);
+        } catch (AccessDeniedException exception) {
+            System.out.println("File Creation Denied by OS");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assertTrue(size > 0);
+    }
+
+    @Test
+    public void testSaveFile2_YearMonthDay_Base62() {
+        System.out.println("------ SaveFile2_Base62 ----");
+        String basePath = Paths.get(".").toAbsolutePath().normalize().toString();
+        System.out.println("Base Path: " + basePath);
+        Path path = LocalFileHelper.createYearMonthDay_Base62Path(basePath, 6, ".txt");
+
+        String exampleString = "Test Syam";
+        InputStream stream = new ByteArrayInputStream(exampleString.getBytes(StandardCharsets.UTF_8));
+
+        String absolutePath = null;
+        try {
+            absolutePath = LocalFileHelper.saveFile2(stream, path);
+            System.out.println("File Created in: " + absolutePath);
+        } catch (AccessDeniedException exception) {
+            System.out.println("File Creation Denied by OS");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assertTrue(!StringUtils.isEmpty(absolutePath));
+    }
 }
