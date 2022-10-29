@@ -72,19 +72,35 @@ public class LRUHashMapTest {
         //use a Get to re-order the LRU stack
         map.get(1);
         map.put(3, 3);
-        assertEquals(1, map.get(1));
+        assertEquals(1, map.get(1)); // 1 is recently used so preserved
+        assertEquals(3, map.get(3)); // 3 is new so preserved
+        assertEquals(null, map.get(2)); // 2 is evicted
     }
 
     @Test
-    public void testUnusedEviction() {
-        System.out.println("testUnusedEviction");
-        LRUHashMap<Integer, Integer> map = new LRUHashMap<Integer, Integer>(2);
-        map.put(1, 1);
-        map.put(2, 2);
-        //use a Get to re-order the LRU stack
-        map.get(1);
-        map.put(3, 3);
-        assertEquals(null, map.get(2));
-    }
+    public void testUnusedEviction_LargeSize() {
+        System.out.println("testUnusedEviction_LargeSize _ 100 Size");
+        LRUHashMap<Integer, Integer> map = new LRUHashMap<Integer, Integer>(100);
+        for (int i = 0; i < 100; i++) {
+            map.put(i, i);
+        }
+        for (int i = 0; i < 100; i++) {
+            assertEquals(i, map.get(i)); // pass
+        }
+        // Add More to Cause Eviction
+        map.put(100, 100);
+        assertEquals(null, map.get(0)); // Evicted post 100th key insertion
+        // Check Rest are preserved (1-99)
+        for (int i = 1; i < 101; i++) {
+            assertEquals(i, map.get(i));
+        }
 
+        // Add More to Cause Eviction
+        map.put(101, 101);
+        assertEquals(null, map.get(1)); // Evicted post 100th key insertion
+        // Check Rest are preserved (2-99)
+        for (int i = 2; i < 102; i++) {
+            assertEquals(i, map.get(i));
+        }
+    }
 }
