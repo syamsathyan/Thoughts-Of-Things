@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A Weak Concurrent Hash Map Solution which stores the keys and values only for a specific amount of time, and then expires after that
+ * A Weak Concurrent Hash Map Solution which stores entries for a specific amount of time, and then expires after that
  * time.
  *
  * <pre>

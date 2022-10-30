@@ -9,16 +9,17 @@ Thoughts-Of-Things (ToT Commons)
 3. **shuffle.Sattolo** - Sattolo shuffling
 4. **ByteUtils** - General purpose utilities,Byte ~ Hex fast conversions etc.
 5. **Math** - General purpose Math functions for Geo roundups, Ordinals
-6. **HashUtils** - Hashing utils for conflict avoidance and consistent key building
-7. **Strings** - Fast and light utility methods.
-8. **DateUtils** - Date/Time utilities
-9. **HttpHelper** - Old School fast connectors (no external http client dependency, tested only in server VM's)
-10. **FixedFastStringBuilder** - Non nonsense String builder with UTF-8 and append routines with lengh check excluded.
-11. **LocalFileHelper** - General purpose local file creation and stream sinking utils
-12. **StreamHelper** - IO Stream helper methods.
-13. **SystemCommandExecutor** - Command executor with process support, interrupt handling, streaming io etc
-14. **FixedFastSet** - Set implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with HashSet
-15. **FastFixedList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
+6. **StringUtils** - Fast and light utility methods.
+7. **DateUtils** - Date/Time utilities
+8. **HttpHelper** - Old School fast connectors (no external http client dependency, tested only in server VM's)
+9. **FixedFastStringBuilder** - Non nonsense String builder with UTF-8 and append routines with lengh check excluded.
+10. **LocalFileHelper** - General purpose local file creation and stream sinking utils
+11. **StreamHelper** - IO Stream helper methods.
+12. **SystemCommandExecutor** - Command executor with process support, interrupt handling, streaming io etc
+13. **FixedFastSet** - Set implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with HashSet
+14. **FastFixedList** - List implementation with no growth / resize factors, you initialize a size and it stays, can be reset and reused, offers blazing speeds since hash is not used for object storage and retrieval, see below speed tests comparing with ArrayList
+15. **WeakConcurrentHashMap** - Map Solution which stores entries only for a specific amount of time, and then expires after that time
+16. **LRUHashMap** - Concurrent Map implementation with LeastRecentlyUsed algorithm based eviction to make room for items beyond the initial size
 
 Test Results
 =====
