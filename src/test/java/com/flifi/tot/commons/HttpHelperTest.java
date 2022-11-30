@@ -19,9 +19,12 @@ import com.flifi.tot.commons.util.StringUtils;
 import com.flifi.tot.commons.http.HttpHelper;
 import org.junit.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author sathyasy
@@ -48,17 +51,62 @@ public class HttpHelperTest {
     }
 
     @Test
-    public void testGET_String() {
-        System.out.println("GET_String");
-        String reponse = null;
-        try {
-            reponse = HttpHelper.GET_String("http://google.com");
-            System.out.println(reponse);
-        } catch (IOException e) {
-            reponse = null;
-            e.printStackTrace();
-        }
-        assertTrue(!StringUtils.isEmpty(reponse));
+    public void testGETContent() throws IOException {
+        System.out.println("GETContent");
+        String response = HttpHelper.GETContent("http://google.com", null);
+        assertNotNull(response);
+        System.out.println(response);
+        assertTrue(!StringUtils.isEmpty(response));
+    }
+
+    @Test
+    public void testGET() throws IOException {
+        System.out.println("GET");
+        int responseCode = HttpHelper.GET("https://httpbin.org/get", null);
+        assertEquals(responseCode, 200);
+        System.out.println(responseCode);
+    }
+
+    @Test
+    public void testGET_HttpStatusCode_Custom() throws IOException {
+        System.out.println("GET StatusCode Custom");
+        int responseCode = HttpHelper.GET("https://httpbin.org/status/500", null);
+        assertEquals(responseCode, 500);
+        System.out.println(responseCode);
+    }
+
+    @Test
+    public void testPOST() throws IOException {
+        System.out.println("POST");
+        String content = "Hello";
+        InputStream targetStream = new ByteArrayInputStream(content.getBytes());
+        String response = HttpHelper.POST("https://httpbin.org/post", targetStream, null);
+        assertNotNull(response);
+    }
+
+    @Test
+    public void testPOSTJson() throws IOException {
+        System.out.println("POSTJson");
+        String content = "Hello";
+        InputStream targetStream = new ByteArrayInputStream(content.getBytes());
+        String response = HttpHelper.POST_Json("https://httpbin.org/post", targetStream, null);
+        assertNotNull(response);
+    }
+
+    @Test
+    public void testPUT() throws IOException {
+        System.out.println("PUT");
+        String content = "Hello";
+        int responseCode = HttpHelper.PUT("https://httpbin.org/put", content, null);
+        assertEquals(responseCode, 200);
+    }
+
+    @Test
+    public void testDELETE() throws IOException {
+        System.out.println("DELETE");
+        String content = "Hello";
+        int responseCode = HttpHelper.DELETE("https://httpbin.org/delete", null);
+        assertEquals(responseCode, 200);
     }
 
 }
