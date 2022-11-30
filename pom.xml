@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.flifi.tot</groupId>
     <artifactId>tot-commons</artifactId>
-    <version>3.6.0</version>
+    <version>3.6.1</version>
     <packaging>jar</packaging>
     <name>Thoughts-Of-Things</name>
     <licenses>
